@@ -1,0 +1,104 @@
+propel:
+  
+  pages:
+    id:                 ~
+    is_301redirect:    { type: boolean, default: false }
+    old_link:          { type: varchar, size: 250, index: unique }
+    slug:              { type: varchar, size: 250, required: true, index: unique }
+    title:             { type: varchar, size: 250 }
+    breadcrumb:        { type: varchar, size: 250 }
+    h1:                { type: varchar, size: 250 }
+    meta_keywords:     { type: longvarchar }
+    meta_description:  { type: longvarchar }
+    body:              { type: longvarchar }
+    created_at:        ~
+    updated_at:        ~
+    
+  service_form:
+    id:                ~
+    name:              { type: varchar, size: 250, required: true, index: unique }
+    title:             { type: varchar, size: 250 }
+    auto_inc:          { type: integer, size: 11, required: true, default: 1 }
+    success_message:   { type: varchar, size: 250 }
+    user_subject:      { type: varchar, size: 250, required: true }
+    user_body:         { type: longvarchar }
+    operator_email:    { type: varchar, size: 250, required: true }
+    operator_subject:  { type: varchar, size: 250, required: true }
+    operator_body:     { type: longvarchar }
+    
+  field:
+    id:                ~
+    form_id:           { type: integer, required: true, foreignTable: service_form, foreignReference: id, onDelete: cascade }
+    is_required:       { type: boolean, required: true, default: false }
+    is_deletable:      { type: boolean, required: true, default: true }
+    sort:              { type: integer, size: 2, required: true, default: 0 }
+    type:              { type: varchar, size: 10, required: true }
+    field_name:        { type: varchar, size: 30, required: true }
+    title:             { type: varchar, size: 60 }
+    tip:               { type: varchar, size: 255 }
+    variants:          { type: longvarchar }
+    created_at:        ~
+    updated_at:        ~
+    _uniques:
+      form_field: [form_id, field_name(30)]
+    
+  filled_form:
+    id:                ~
+    form_id:           { type: integer, required: true, foreignTable: service_form, foreignReference: id, onDelete: cascade }
+    inner_id:          { type: integer, required: true }
+    operator_id:       { type: integer, foreignTable: sf_guard_user, foreignReference: id, onDelete: setnull }
+    operator_mail_sent: { type: boolean, required: true, default: false }
+    user_mail_sent:    { type: boolean, required: true, default: false }
+    name:              { type: varchar, size: 250 }
+    email:             { type: varchar, size: 250 }
+    phone:             { type: varchar, size: 250 }
+    referer:           { type: varchar, size: 250, required: true }
+    data:              { type: longvarchar, required: true }
+    is_closed:         { type: boolean, required: true, default: false }
+    notes:             { type: longvarchar }
+    created_at:        ~
+    updated_at:        ~
+    
+  advertise:
+    id:                ~
+    slug:              { type: varchar, size: 250, required: true, index: unique }
+    is_on_slider:      { type: boolean, required: true, default: true }
+    is_active:         { type: boolean, required: true, default: true }
+    slider_image:      { type: varchar, size: 60, required: true }
+    slider_h1:         { type: varchar, size: 150, required: true }
+    slider_text:       { type: varchar, size: 250, required: true }
+    title:             { type: varchar, size: 250, required: true }
+    h1:                { type: varchar, size: 250, required: true }
+    short_text:        { type: longvarchar, required: true }
+    description:       { type: longvarchar }
+
+  car_label:
+    id:                ~
+    parent_id:         { type: integer, required: false, foreignTable: car_label, foreignReference: id, onDelete: cascade }
+    slug:              { type: varchar, size: 250, required: true, index: unique }
+    name:              { type: varchar, size: 250, required: true }
+    
+  category:
+    id:                ~
+    parent_id:         { type: integer, required: false, foreignTable: category, foreignReference: id, onDelete: cascade }
+    slug:              { type: varchar, size: 250, required: true, index: unique }
+    name:              { type: varchar, size: 250, required: true }
+    
+  car_category:
+    car_id:            { type: integer, required: true, foreignTable: car_label, foreignReference: id, onDelete: cascade, primaryKey: true }
+    category_id:       { type: integer, required: true, foreignTable: category, foreignReference: id, onDelete: cascade, primaryKey: true }
+
+  car_product:
+    car_id:            { type: integer, required: true, foreignTable: car_label, foreignReference: id, onDelete: cascade, primaryKey: true }
+    product_id:        { type: integer, required: true, foreignTable: product, foreignReference: id, onDelete: cascade, primaryKey: true }
+
+
+  product:
+    id:                ~
+    category_id:       { type: integer, required: false, foreignTable: category, foreignReference: id, onDelete: cascade }
+    amount:            { type: integer, required: true }
+    uid:               { type: varchar, size: 100, required: true, index: true }
+    analog_uid:        { type: varchar, size: 100, required: false, index: true }
+    slug:              { type: varchar, size: 250, required: true, index: unique }
+    name:              { type: varchar, size: 250, required: true }
+    distrib_price:     { type: decimal, size: 15, scale: 2 }

@@ -1,0 +1,48 @@
+all:
+  uploads_dir: "uploads"
+  adv:
+    dir: "promotions"
+    w: 632
+    h: 233
+    
+  captcha:
+    width: 100
+    height: 24
+    length: 4
+    fontsize: 16
+    chars: "0123456789abcdef"
+    bg: "#eeeeee"
+    session: captcha_code
+  
+  success_form_timeout: 5
+  email_from:
+    admin: admin@rm-market.ru
+    no_reply: no-reply@rm-market.ru
+    
+  .array:
+    pre_fields:
+      0: 
+        sort: 1
+        is_required: true
+        is_deletable: false
+        type: text
+        field_name: name
+        title: Ваше имя
+        tip: Имя
+      1: 
+        sort: 2
+        is_required: true
+        is_deletable: false
+        type: text
+        field_name: email
+        title: E-mail
+        tip: email@mail.com
+      2: 
+        sort: 3
+        is_required: true
+        is_deletable: false
+        type: text
+        field_name: phone
+        title: Ваш № телефона
+        tip: (+7) 495 XXX-XX-XX
+        

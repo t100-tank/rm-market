@@ -6,3 +6,4 @@
 /web/uploads
 /.idea
 /cache
+/config/databases.yml
