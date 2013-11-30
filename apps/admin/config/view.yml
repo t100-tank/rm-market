@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    #title:        symfony project
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    ["rm-market/jquery-ui.min.css", bootstrap.min.css, "admin.css?v=<?php echo filemtime(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'css'.DIRECTORY_SEPARATOR.'admin.css'); ?>"]
+
+  javascripts:    [jquery-2.0.3.min.js, jquery-ui.min.js, bootstrap.min.js, "admin.js?v=<?php echo filemtime(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'admin.js'); ?>", tinymce/tiny_mce.js]
+
+  has_layout:     true
+  layout:         layout

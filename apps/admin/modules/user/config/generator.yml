@@ -1,0 +1,33 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           sfGuardUser
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              sfGuardUser
+    plural:                sfGuardUsers
+    route_prefix:          sf_guard_user
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        username:          { label: Пользователь }
+        groups:            { label: Группы }
+        is_active:         { label: Активирован }
+        is_super_admin:    { label: Полный доступ }
+        sf_guard_user_group_list: { label: "Группа(ы)" }
+      list:
+        display:           [username, is_active, is_super_admin, groups]
+        title:             Пользователи
+        max_per_page:      20
+      filter:
+        class:             CustomUserFormFilter
+      form:
+        class:             sfGuardUserAdminOutPermForm
+      edit:
+        title:             Редактирование пользователя
+      new:
+        title:             Новый пользователь

@@ -1,0 +1,145 @@
+car_import_export:
+  url: /car/import-export
+  params: { module: carImportExport, action: index }
+car_import_original_parts_form:
+  url: /car/import/original-parts
+  params: { module: carImportExport, action: importOriginalPartsForm }
+car_import_original_parts_store:
+  url: /car/import/original-parts/store
+  params: { module: carImportExport, action: importOriginalPartsStore }
+
+category:
+  class: sfPropelRouteCollection
+  options:
+    model:                Category
+    module:               category
+    prefix_path:          /category
+    column:               id
+    with_wildcard_routes: true
+
+car_label:
+  class: sfPropelRouteCollection
+  options:
+    model:                CarLabel
+    module:               label
+    prefix_path:          /label
+    column:               id
+    with_wildcard_routes: true
+
+advertise:
+  class: sfPropelRouteCollection
+  options:
+    model:                Advertise
+    module:               adv
+    prefix_path:          /adv
+    column:               id
+    with_wildcard_routes: true
+
+filled_form_operator_change_owner:
+  url: /operator/:id/change
+  param: { module: operatorFilledForms, action: change }
+
+filled_form_operator_bind_owner:
+  url: /operator/:id/bind
+  param: { module: operatorFilledForms, action: bind, binding: 1 }
+filled_form_operator_unbind_owner:
+  url: /operator/:id/unbind
+  param: { module: operatorFilledForms, action: bind, binding: 0 }
+  
+filled_form_operator_change_status:
+  url: /operator/:id/status/:setting
+  param: { module: operatorFilledForms, action: status }
+
+filled_form_operatorFilledForms:
+  class: sfPropelRouteCollection
+  options:
+    model:                FilledForm
+    module:               operatorFilledForms
+    prefix_path:          /operator
+    column:               id
+    with_wildcard_routes: true
+
+filled_form:
+  class: sfPropelRouteCollection
+  options:
+    model:                FilledForm
+    module:               adminFilledForms
+    prefix_path:          /admin-filled-forms
+    column:               id
+    with_wildcard_routes: true
+
+field_filter:
+  url: /field/filter
+  param: { module: field, action: filter }
+field:
+  class: sfPropelRouteCollection
+  options:
+    model:                field
+    module:               field
+    prefix_path:          /field
+    column:               id
+    with_wildcard_routes: true
+
+service_form:
+  class: sfPropelRouteCollection
+  options:
+    model:                ServiceForm
+    module:               forms
+    prefix_path:          /forms
+    column:               id
+    with_wildcard_routes: true
+
+pages_export:
+  url: /page/export
+  param: { module: page, action: export }
+pages_export_enc:
+  url: /page/export/:encoding
+  param: { module: page, action: exportEncoding }
+pages_import:
+  url: /page/import
+  param: { module: page, action: import }
+pages_import_store:
+  url: /page/import-store
+  param: { module: page, action: importStore }
+pages:
+  class: sfPropelRouteCollection
+  options:
+    model:                Pages
+    module:               page
+    prefix_path:          /page
+    column:               id
+    with_wildcard_routes: true
+
+sf_guard_user:
+  class: sfPropelRouteCollection
+  options:
+    model:                sfGuardUser
+    module:               user
+    prefix_path:          /user
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+sf_guard_signin:
+  url:   /login
+  param: { module: sfGuardAuth, action: signin }
+ 
+sf_guard_signout:
+  url:   /logout
+  param: { module: sfGuardAuth, action: signout }
+
+# default rules
+homepage:
+  url:   /
+  param: { module: home, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+#default_index:
+#  url:   /:module
+#  param: { action: index }
+#
+#default:
+#  url:   /:module/:action/*

@@ -1,0 +1,22 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        RM-Market
+    viewport:     "width=device-width, initial-scale=1.0"
+    author:       RM-Market
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    ["rm-market/jquery-ui.min.css", bootstrap.min.css, "main.css?v=<?php echo filemtime(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'/css/main.css'); ?>"]
+
+  javascripts:    [jquery-2.0.3.min.js, jquery-ui.min.js, jquery.scrollTo-min.js, jquery.form.min.js, bootstrap.min.js, "main.js?v=<?php echo filemtime(sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'/js/main.js'); ?>"]
+
+  has_layout:     true
+  layout:         layout

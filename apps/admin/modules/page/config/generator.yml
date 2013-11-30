@@ -1,0 +1,30 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Pages
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Pages
+    plural:                Pagess
+    route_prefix:          pages
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:             Страницы
+        display:           [slug, old_link, is_301redirect, title]
+        max_per_page:      40
+        actions:
+          _new:            ~
+          import_pages:    { action: import, label: "Импорт" }
+          export_pages:    { action: export, label: "Экспорт" }
+      filter:  ~
+      form:    ~
+      edit:
+        title:             Редактирование страницы
+      new:
+        title:             Новая страница

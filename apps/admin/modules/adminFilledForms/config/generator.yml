@@ -1,0 +1,39 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           FilledForm
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              FilledForm
+    plural:                FilledForms
+    route_prefix:          filled_form
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        service_form: { label: "Форма" }
+        sf_guard_user: { label: "Приемщик" }
+        operator_id: { label: "Приемщик" }
+        operator_mail_sent: { label: "E-mail приемщику" }
+        user_mail_sent: { label: "E-mail заказчику" }
+        name: { label: "Имя (форма)" }
+        email: { label: "E-mail (форма)" }
+        phone: { label: "Телефон (форма)" }
+        referer: { label: "Со страницы" }
+        data: { label: "Данные формы" }
+        is_closed: { label: "Закрыто" }
+        notes: { label: "Заметки" }
+        created_at: { label: "Создано", date_format: "dd.MM.y H:mm" }
+        updated_at: { label: "Обновлено", date_format: "dd.MM.y H:mm" }
+      list:
+        title: "Заполненые формы"
+        display: [service_form, sf_guard_user, operator_mail_sent, user_mail_sent, is_closed, created_at, updated_at]
+        batch_actions: []
+        actions: []
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

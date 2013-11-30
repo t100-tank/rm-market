@@ -1,0 +1,54 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+promotion:
+  url:   /akcii/:slug/
+  param: { module: promotions, action: show }
+promotions:
+  url:   /akcii/
+  param: { module: promotions, action: index }
+
+form_show:
+  url:   /form-show/:slug/
+  param: { module: forms, action: show }
+form_action:
+  url:   /form-store/:slug/
+  param: { module: forms, action: index }
+form_chcode:
+  url:   /form-chcode
+  param: { module: forms, action: chcode }
+  
+zapchasti:
+  url:   /avtozapchasti/
+  param: { module: zapchasti, action: index }
+zapchasti_label:
+  url:   /avtozapchasti/:car_label/
+  param: { module: zapchasti, action: label }
+zapchasti_label_category:
+  url:   /avtozapchasti/:car_label/:category
+  param: { module: zapchasti, action: mark }
+zapchasti_label_category_product:
+  url:   /avtozapchasti/:car_label/:category/:product
+  param: { module: zapchasti, action: mark }
+# default rules
+
+homepage:
+  url:   /
+  param: { module: home, action: index }
+  
+content_page404:
+  url:   /404
+  param: { module: home, action: page, slug: 404 }
+
+content_page:
+  url:   /:slug
+  param: { module: home, action: page }
+  requirements:
+    slug: .*
+# generic rules
+# please, remove them by adding more specific rules
+#default_index:
+#  url:   /:module
+#  param: { action: index }
+#
+#default:
+#  url:   /:module/:action/*

@@ -1,0 +1,39 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Advertise
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Advertise
+    plural:                Advertises
+    route_prefix:          advertise
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        is_on_slider:      { label: На главной }
+        is_active:         { label: Отображать }
+        slider_image:      { label: Изображение, help: "623x233 px" }
+        img:               { label: Изображение }
+        slider_h1:         { label: Заглавие }
+        slider_text:       { label: Подпись }
+        title:             { label: Заглавие }
+        h1:                { label: Заглавие H1 }
+        short_text:        { label: Короткое описание }
+        description:       { label: Полное описание }
+      list:
+        title:             Акции
+        display:           [ slug, slider_h1, _img, is_active, is_on_slider ]
+      filter:  ~
+      form:
+        display:
+          NONE:            [slug, is_on_slider, is_active]
+          Слайдер:         [slider_image, slider_h1, slider_text]
+          Акции:           [title, h1, short_text, description]
+      edit:
+        title:             Редактирование акции
+      new:
+        title:             Новая акция

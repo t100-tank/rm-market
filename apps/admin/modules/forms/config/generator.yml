@@ -1,0 +1,49 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           ServiceForm
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ServiceForm
+    plural:                ServiceForms
+    route_prefix:          service_form
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        name:              { label: Идентификатор формы }
+        title:             { label: Заголовок формы }
+        auto_inc:          { label: Автоинкремент }
+        success_message:   { label: Форма-ответ }
+        user_subject:      { label: Тема письма }
+        user_body:         { label: Начало письма }
+        operator_email:    { label: E-mail }
+        operator_subject:  { label: Тема письма }
+        operator_body:     { label: Начало письма }
+      list:
+        title:             Формы
+        display:           [name, title, auto_inc]
+        object_actions:
+          _edit:           ~
+          fields:          { label: Поля }
+        actions:
+          _new:            ~
+        batch_actions:     []
+      filter:  ~
+      form:
+        display:
+          NONE:            [name, title, auto_inc, success_message]
+          "Пользователь":  [user_subject, user_body]
+          "Приемщик":      [operator_email, operator_subject, operator_body]
+      edit:
+        title:             Редактирование форм
+        actions:
+          _delete: ~
+          _list: ~
+          _save: ~
+          fields:          { label: Поля }
+      new:
+        title:             Новая форма

@@ -1,0 +1,34 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           field
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              field
+    plural:                fields
+    route_prefix:          field
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        service_form:      { label: Форма }
+        sort:              { label: Сортировка }
+        field_name:        { label: Field name }
+        type:              { label: Тип поля }
+        variants:          { label: Варианты }
+        title:             { label: Название поля }
+        is_required:       { label: "Обязательное?" }
+        is_deletable:      { label: Можно удалить }
+        tip:               { label: Подсказка }
+      list:
+        title:             Поля формы
+        display:           [service_form, sort, field_name, type, title, is_deletable, is_required]
+      filter:  ~
+      form:  ~
+      edit:
+        title:             Редактирование поля
+      new:
+        title:             Новое поле

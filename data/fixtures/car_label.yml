@@ -1,0 +1,16 @@
+CarLabel:
+  hummer:
+    slug: hummer
+    name: Hummer
+
+  cadillac:
+    slug: cadillac
+    name: Cadillac
+
+  opel:
+    slug: opel
+    name: Opel
+
+  chevrolet:
+    slug: chevrolet
+    name: Chevrolet

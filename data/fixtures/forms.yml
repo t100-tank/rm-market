@@ -1,0 +1,26 @@
+ServiceForm:
+  Appointment:
+    name: appointment
+    title: Запись на приемку
+    auto_inc: 1
+    success_message: Спасибо, с Вами свяжутся в кратчайшее время.
+    user_subject: Запись на приемку
+    user_body: |
+      <p>Спасибо, мы записали Вас на приемку.</p>
+    operator_email: arij.true@gmail.com
+    operator_subject: Запись на приемку
+    operator_body: |
+      <p>Новая запись на приемку.</p>
+      
+  BackCall:
+    name: backCall
+    title: Заказать обратный звонок
+    auto_inc: 1
+    success_message: Спасибо, с Вами свяжутся в кратчайшее время.
+    user_subject: Заказ обратного звонок
+    user_body: |
+      <p>Спасибо, мы с Вами свяжемся в кратчайшие сроки.</p>
+    operator_email: arij.true@gmail.com
+    operator_subject: Заказ обратного звонок
+    operator_body: |
+      <p>Новый заказ обратного звонка.</p>

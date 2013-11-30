@@ -1,0 +1,48 @@
+sfGuardUser:
+  admin:
+    username:       admin
+    password:       admin
+    is_super_admin: true
+
+sfGuardPermission:
+  users:
+    name:           users
+    description:    Администрирование пользователей
+  pages:
+    name:           pages
+    description:    Администрирование страниц
+  forms:
+    name:           forms
+    description:    Администрирование форм
+  form_respondent:
+    name:           form_respondent
+    description:    Обработка форм
+
+sfGuardGroup:
+  users:
+    name:           users
+    description:    Группа админов пользователей
+  pages:
+    name:           pages
+    description:    Группа админов страниц
+  forms:
+    name:           forms
+    description:    Группа админов форм
+  form_respondent:
+    name:           form_respondent
+    description:    Группа обработчиков форм
+
+sfGuardGroupPermission:
+  admin_users:
+    group_id:       users
+    permission_id:  users
+  admin_pages:
+    group_id:       pages
+    permission_id:  pages
+  admin_forms:
+    group_id:       forms
+    permission_id:  forms
+  admin_form_respond:
+    group_id:       form_respondent
+    permission_id:  form_respondent
+
