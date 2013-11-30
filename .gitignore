@@ -1,3 +1,4 @@
 /data/schema
 /data/sql
 /log
+/lib/vendor/symfony
