@@ -19,6 +19,7 @@
 Pages:
   pIndex:
     slug: /
+    type: page
     h1: RM-Market
     title: RM-Market
     breadcrumb: Главная
@@ -50,6 +51,7 @@ Pages:
       </div>
   p404:
     slug: /404/
+    type: page
     h1: 404 - Страница не найдена
     title: 404 - Страница не найдена
     breadcrumb: 404
@@ -62,11 +64,12 @@ Pages:
       
   p_avtotehcentr_hummer:
     slug: /avtotehcenter/hummer/
-    h1: Атвотехцентр - Hummer
-    title: Атвотехцентр - Hummer
+    type: tech
+    h1: Автотехцентр - Hummer
+    title: Автотехцентр - Hummer
     breadcrumb: '[{"link":"/avtotehcenter/","title":"Автотехцентр"},{"link":null,"title":"Hummer"}]'
-    meta_keywords: Атвотехцентр - Hummer
-    meta_description: Атвотехцентр - Hummer
+    meta_keywords: Автотехцентр - Hummer
+    meta_description: Автотехцентр - Hummer
     body: |
       <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">
@@ -101,11 +104,12 @@ Pages:
       
   p_avtotehcentr_cadillac:
     slug: /avtotehcenter/cadillac/
-    h1: Атвотехцентр - Cadillac
-    title: Атвотехцентр - Cadillac
+    type: tech
+    h1: Автотехцентр - Cadillac
+    title: Автотехцентр - Cadillac
     breadcrumb: '[{"link":"/avtotehcenter/","title":"Автотехцентр"},{"link":null,"title":"Cadillac"}]'
-    meta_keywords: Атвотехцентр - Cadillac
-    meta_description: Атвотехцентр - Cadillac
+    meta_keywords: Автотехцентр - Cadillac
+    meta_description: Автотехцентр - Cadillac
     body: |
       <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">
@@ -140,11 +144,12 @@ Pages:
       
   p_avtotehcentr_opel:
     slug: /avtotehcenter/opel/
-    h1: Атвотехцентр - Opel
-    title: Атвотехцентр - Opel
+    type: tech
+    h1: Автотехцентр - Opel
+    title: Автотехцентр - Opel
     breadcrumb: '[{"link":"/avtotehcenter/","title":"Автотехцентр"},{"link":null,"title":"Opel"}]'
-    meta_keywords: Атвотехцентр - Opel
-    meta_description: Атвотехцентр - Opel
+    meta_keywords: Автотехцентр - Opel
+    meta_description: Автотехцентр - Opel
     body: |
       <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">
@@ -179,11 +184,12 @@ Pages:
       
   p_avtotehcentr_chevrolet:
     slug: /avtotehcenter/chevrolet/
-    h1: Атвотехцентр - Chevrolet
-    title: Атвотехцентр - Chevrolet
+    type: tech
+    h1: Автотехцентр - Chevrolet
+    title: Автотехцентр - Chevrolet
     breadcrumb: '[{"link":"/avtotehcenter/","title":"Автотехцентр"},{"link":null,"title":"Chevrolet"}]'
-    meta_keywords: Атвотехцентр - Chevrolet
-    meta_description: Атвотехцентр - Chevrolet
+    meta_keywords: Автотехцентр - Chevrolet
+    meta_description: Автотехцентр - Chevrolet
     body: |
       <div class="row">
           <div class="col-md-4 col-sm-4 col-xs-12">

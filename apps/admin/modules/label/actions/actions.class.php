@@ -13,4 +13,10 @@ require_once dirname(__FILE__).'/../lib/labelGeneratorHelper.class.php';
  */
 class labelActions extends autoLabelActions
 {
+    public function preExecute() {
+        parent::preExecute();
+        if (!$this->getUser()->getGuardUser()->hasPermission('zapchasti')) {
+            $this->redirect('@homepage');
+        }
+    }
 }

@@ -16,7 +16,7 @@ generator:
       fields:  ~
       list:
         title:             Страницы
-        display:           [slug, old_link, is_301redirect, title]
+        display:           [slug, old_link, is_301redirect, title, type]
         max_per_page:      40
         actions:
           _new:            ~

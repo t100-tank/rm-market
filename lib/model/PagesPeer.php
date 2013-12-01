@@ -22,13 +22,25 @@ class PagesPeer extends BasePagesPeer {
     const SLUG_404 = '404/';
     const PROMOTIONS = 'akcii/';
     const ZAPCHASTI = 'avtozapchasti/';
-    
+
+    const TYPE_PAGE = 'page';
+    const TYPE_PROMO = 'promo';
+    const TYPE_ZAPCHASTI = 'zp';
+    const TYPE_TECHCENTER = 'tech';
+
+    static $types = array(
+        self::TYPE_PAGE,
+        self::TYPE_PROMO,
+        self::TYPE_ZAPCHASTI,
+        self::TYPE_TECHCENTER
+    );
+
     /**
      * Search for 1 matched record by slug (slug, old_link)
      * @param string $slug
      * @return Pages
      */
-    public static  function retrieveBySlug($slug) {
+    public static function retrieveBySlug($slug) {
         $con = Propel::getConnection();
         $q = "SELECT ".implode(', ', self::getFieldNames(BasePeer::TYPE_FIELDNAME))." FROM ".self::TABLE_NAME." WHERE ".self::SLUG." = :slug OR ".self::OLD_LINK." = :slug LIMIT 1";
         $stmt = $con->prepare($q);
@@ -149,4 +161,5 @@ class PagesPeer extends BasePagesPeer {
         
         return $report;
     }
+
 } // PagesPeer

@@ -17,6 +17,9 @@ sfGuardPermission:
   form_respondent:
     name:           form_respondent
     description:    Обработка форм
+  zapchasti:
+    name:           zapchasti
+    description:    Администрирование запчастей
 
 sfGuardGroup:
   users:
@@ -31,6 +34,9 @@ sfGuardGroup:
   form_respondent:
     name:           form_respondent
     description:    Группа обработчиков форм
+  zapchasti:
+    name:           zapchasti
+    description:    Группа админов запчастей
 
 sfGuardGroupPermission:
   admin_users:
@@ -45,4 +51,7 @@ sfGuardGroupPermission:
   admin_form_respond:
     group_id:       form_respondent
     permission_id:  form_respondent
+  admin_zapchasti:
+    group_id:       zapchasti
+    permission_id:  zapchasti
 

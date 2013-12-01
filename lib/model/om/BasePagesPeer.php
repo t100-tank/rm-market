@@ -25,7 +25,7 @@ abstract class BasePagesPeer {
 	const TM_CLASS = 'PagesTableMap';
 	
 	/** The total number of columns. */
-	const NUM_COLUMNS = 12;
+	const NUM_COLUMNS = 13;
 
 	/** The number of lazy-loaded columns. */
 	const NUM_LAZY_LOAD_COLUMNS = 0;
@@ -38,6 +38,9 @@ abstract class BasePagesPeer {
 
 	/** the column name for the OLD_LINK field */
 	const OLD_LINK = 'pages.OLD_LINK';
+
+	/** the column name for the TYPE field */
+	const TYPE = 'pages.TYPE';
 
 	/** the column name for the SLUG field */
 	const SLUG = 'pages.SLUG';
@@ -89,11 +92,11 @@ abstract class BasePagesPeer {
 	 * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
 	 */
 	private static $fieldNames = array (
-		BasePeer::TYPE_PHPNAME => array ('Id', 'Is301redirect', 'OldLink', 'Slug', 'Title', 'Breadcrumb', 'H1', 'MetaKeywords', 'MetaDescription', 'Body', 'CreatedAt', 'UpdatedAt', ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'is301redirect', 'oldLink', 'slug', 'title', 'breadcrumb', 'h1', 'metaKeywords', 'metaDescription', 'body', 'createdAt', 'updatedAt', ),
-		BasePeer::TYPE_COLNAME => array (self::ID, self::IS_301REDIRECT, self::OLD_LINK, self::SLUG, self::TITLE, self::BREADCRUMB, self::H1, self::META_KEYWORDS, self::META_DESCRIPTION, self::BODY, self::CREATED_AT, self::UPDATED_AT, ),
-		BasePeer::TYPE_FIELDNAME => array ('id', 'is_301redirect', 'old_link', 'slug', 'title', 'breadcrumb', 'h1', 'meta_keywords', 'meta_description', 'body', 'created_at', 'updated_at', ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+		BasePeer::TYPE_PHPNAME => array ('Id', 'Is301redirect', 'OldLink', 'Type', 'Slug', 'Title', 'Breadcrumb', 'H1', 'MetaKeywords', 'MetaDescription', 'Body', 'CreatedAt', 'UpdatedAt', ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'is301redirect', 'oldLink', 'type', 'slug', 'title', 'breadcrumb', 'h1', 'metaKeywords', 'metaDescription', 'body', 'createdAt', 'updatedAt', ),
+		BasePeer::TYPE_COLNAME => array (self::ID, self::IS_301REDIRECT, self::OLD_LINK, self::TYPE, self::SLUG, self::TITLE, self::BREADCRUMB, self::H1, self::META_KEYWORDS, self::META_DESCRIPTION, self::BODY, self::CREATED_AT, self::UPDATED_AT, ),
+		BasePeer::TYPE_FIELDNAME => array ('id', 'is_301redirect', 'old_link', 'type', 'slug', 'title', 'breadcrumb', 'h1', 'meta_keywords', 'meta_description', 'body', 'created_at', 'updated_at', ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -103,11 +106,11 @@ abstract class BasePagesPeer {
 	 * e.g. self::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
 	 */
 	private static $fieldKeys = array (
-		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Is301redirect' => 1, 'OldLink' => 2, 'Slug' => 3, 'Title' => 4, 'Breadcrumb' => 5, 'H1' => 6, 'MetaKeywords' => 7, 'MetaDescription' => 8, 'Body' => 9, 'CreatedAt' => 10, 'UpdatedAt' => 11, ),
-		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'is301redirect' => 1, 'oldLink' => 2, 'slug' => 3, 'title' => 4, 'breadcrumb' => 5, 'h1' => 6, 'metaKeywords' => 7, 'metaDescription' => 8, 'body' => 9, 'createdAt' => 10, 'updatedAt' => 11, ),
-		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::IS_301REDIRECT => 1, self::OLD_LINK => 2, self::SLUG => 3, self::TITLE => 4, self::BREADCRUMB => 5, self::H1 => 6, self::META_KEYWORDS => 7, self::META_DESCRIPTION => 8, self::BODY => 9, self::CREATED_AT => 10, self::UPDATED_AT => 11, ),
-		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'is_301redirect' => 1, 'old_link' => 2, 'slug' => 3, 'title' => 4, 'breadcrumb' => 5, 'h1' => 6, 'meta_keywords' => 7, 'meta_description' => 8, 'body' => 9, 'created_at' => 10, 'updated_at' => 11, ),
-		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+		BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Is301redirect' => 1, 'OldLink' => 2, 'Type' => 3, 'Slug' => 4, 'Title' => 5, 'Breadcrumb' => 6, 'H1' => 7, 'MetaKeywords' => 8, 'MetaDescription' => 9, 'Body' => 10, 'CreatedAt' => 11, 'UpdatedAt' => 12, ),
+		BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'is301redirect' => 1, 'oldLink' => 2, 'type' => 3, 'slug' => 4, 'title' => 5, 'breadcrumb' => 6, 'h1' => 7, 'metaKeywords' => 8, 'metaDescription' => 9, 'body' => 10, 'createdAt' => 11, 'updatedAt' => 12, ),
+		BasePeer::TYPE_COLNAME => array (self::ID => 0, self::IS_301REDIRECT => 1, self::OLD_LINK => 2, self::TYPE => 3, self::SLUG => 4, self::TITLE => 5, self::BREADCRUMB => 6, self::H1 => 7, self::META_KEYWORDS => 8, self::META_DESCRIPTION => 9, self::BODY => 10, self::CREATED_AT => 11, self::UPDATED_AT => 12, ),
+		BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'is_301redirect' => 1, 'old_link' => 2, 'type' => 3, 'slug' => 4, 'title' => 5, 'breadcrumb' => 6, 'h1' => 7, 'meta_keywords' => 8, 'meta_description' => 9, 'body' => 10, 'created_at' => 11, 'updated_at' => 12, ),
+		BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, )
 	);
 
 	/**
@@ -180,6 +183,7 @@ abstract class BasePagesPeer {
 		$criteria->addSelectColumn(PagesPeer::ID);
 		$criteria->addSelectColumn(PagesPeer::IS_301REDIRECT);
 		$criteria->addSelectColumn(PagesPeer::OLD_LINK);
+		$criteria->addSelectColumn(PagesPeer::TYPE);
 		$criteria->addSelectColumn(PagesPeer::SLUG);
 		$criteria->addSelectColumn(PagesPeer::TITLE);
 		$criteria->addSelectColumn(PagesPeer::BREADCRUMB);

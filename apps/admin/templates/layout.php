@@ -35,6 +35,7 @@
                         echo '<li>'.link_to('Импорт/Экспорт', '@car_import_export').'</li>';
                         echo '<li>'.link_to('Марки', '@car_label').'</li>';
                         echo '<li>'.link_to('Категории', '@category').'</li>';
+                        echo '<li>'.link_to('Запчасти', '@product').'</li>';
                         echo '</ul>';
                         echo '</li>';
                     } ?>

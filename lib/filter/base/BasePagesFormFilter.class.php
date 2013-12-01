@@ -14,6 +14,7 @@ abstract class BasePagesFormFilter extends BaseFormFilterPropel
     $this->setWidgets(array(
       'is_301redirect'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'old_link'         => new sfWidgetFormFilterInput(),
+      'type'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'slug'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'title'            => new sfWidgetFormFilterInput(),
       'breadcrumb'       => new sfWidgetFormFilterInput(),
@@ -28,6 +29,7 @@ abstract class BasePagesFormFilter extends BaseFormFilterPropel
     $this->setValidators(array(
       'is_301redirect'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'old_link'         => new sfValidatorPass(array('required' => false)),
+      'type'             => new sfValidatorPass(array('required' => false)),
       'slug'             => new sfValidatorPass(array('required' => false)),
       'title'            => new sfValidatorPass(array('required' => false)),
       'breadcrumb'       => new sfValidatorPass(array('required' => false)),
@@ -57,6 +59,7 @@ abstract class BasePagesFormFilter extends BaseFormFilterPropel
       'id'               => 'Number',
       'is_301redirect'   => 'Boolean',
       'old_link'         => 'Text',
+      'type'             => 'Text',
       'slug'             => 'Text',
       'title'            => 'Text',
       'breadcrumb'       => 'Text',

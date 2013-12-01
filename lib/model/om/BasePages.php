@@ -38,6 +38,12 @@ abstract class BasePages extends BaseObject  implements Persistent {
 	protected $old_link;
 
 	/**
+	 * The value for the type field.
+	 * @var        string
+	 */
+	protected $type;
+
+	/**
 	 * The value for the slug field.
 	 * @var        string
 	 */
@@ -158,6 +164,16 @@ abstract class BasePages extends BaseObject  implements Persistent {
 	public function getOldLink()
 	{
 		return $this->old_link;
+	}
+
+	/**
+	 * Get the [type] column value.
+	 * 
+	 * @return     string
+	 */
+	public function getType()
+	{
+		return $this->type;
 	}
 
 	/**
@@ -365,6 +381,26 @@ abstract class BasePages extends BaseObject  implements Persistent {
 
 		return $this;
 	} // setOldLink()
+
+	/**
+	 * Set the value of [type] column.
+	 * 
+	 * @param      string $v new value
+	 * @return     Pages The current object (for fluent API support)
+	 */
+	public function setType($v)
+	{
+		if ($v !== null) {
+			$v = (string) $v;
+		}
+
+		if ($this->type !== $v) {
+			$this->type = $v;
+			$this->modifiedColumns[] = PagesPeer::TYPE;
+		}
+
+		return $this;
+	} // setType()
 
 	/**
 	 * Set the value of [slug] column.
@@ -643,15 +679,16 @@ abstract class BasePages extends BaseObject  implements Persistent {
 			$this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
 			$this->is_301redirect = ($row[$startcol + 1] !== null) ? (boolean) $row[$startcol + 1] : null;
 			$this->old_link = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-			$this->slug = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-			$this->title = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-			$this->breadcrumb = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-			$this->h1 = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-			$this->meta_keywords = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-			$this->meta_description = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-			$this->body = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-			$this->created_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-			$this->updated_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->type = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+			$this->slug = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+			$this->title = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+			$this->breadcrumb = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+			$this->h1 = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+			$this->meta_keywords = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+			$this->meta_description = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+			$this->body = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+			$this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+			$this->updated_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
 			$this->resetModified();
 
 			$this->setNew(false);
@@ -661,7 +698,7 @@ abstract class BasePages extends BaseObject  implements Persistent {
 			}
 
 			// FIXME - using NUM_COLUMNS may be clearer.
-			return $startcol + 12; // 12 = PagesPeer::NUM_COLUMNS - PagesPeer::NUM_LAZY_LOAD_COLUMNS).
+			return $startcol + 13; // 13 = PagesPeer::NUM_COLUMNS - PagesPeer::NUM_LAZY_LOAD_COLUMNS).
 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating Pages object", $e);
@@ -1013,30 +1050,33 @@ abstract class BasePages extends BaseObject  implements Persistent {
 				return $this->getOldLink();
 				break;
 			case 3:
-				return $this->getSlug();
+				return $this->getType();
 				break;
 			case 4:
-				return $this->getTitle();
+				return $this->getSlug();
 				break;
 			case 5:
-				return $this->getBreadcrumb();
+				return $this->getTitle();
 				break;
 			case 6:
-				return $this->getH1();
+				return $this->getBreadcrumb();
 				break;
 			case 7:
-				return $this->getMetaKeywords();
+				return $this->getH1();
 				break;
 			case 8:
-				return $this->getMetaDescription();
+				return $this->getMetaKeywords();
 				break;
 			case 9:
-				return $this->getBody();
+				return $this->getMetaDescription();
 				break;
 			case 10:
-				return $this->getCreatedAt();
+				return $this->getBody();
 				break;
 			case 11:
+				return $this->getCreatedAt();
+				break;
+			case 12:
 				return $this->getUpdatedAt();
 				break;
 			default:
@@ -1063,15 +1103,16 @@ abstract class BasePages extends BaseObject  implements Persistent {
 			$keys[0] => $this->getId(),
 			$keys[1] => $this->getIs301redirect(),
 			$keys[2] => $this->getOldLink(),
-			$keys[3] => $this->getSlug(),
-			$keys[4] => $this->getTitle(),
-			$keys[5] => $this->getBreadcrumb(),
-			$keys[6] => $this->getH1(),
-			$keys[7] => $this->getMetaKeywords(),
-			$keys[8] => $this->getMetaDescription(),
-			$keys[9] => $this->getBody(),
-			$keys[10] => $this->getCreatedAt(),
-			$keys[11] => $this->getUpdatedAt(),
+			$keys[3] => $this->getType(),
+			$keys[4] => $this->getSlug(),
+			$keys[5] => $this->getTitle(),
+			$keys[6] => $this->getBreadcrumb(),
+			$keys[7] => $this->getH1(),
+			$keys[8] => $this->getMetaKeywords(),
+			$keys[9] => $this->getMetaDescription(),
+			$keys[10] => $this->getBody(),
+			$keys[11] => $this->getCreatedAt(),
+			$keys[12] => $this->getUpdatedAt(),
 		);
 		return $result;
 	}
@@ -1113,30 +1154,33 @@ abstract class BasePages extends BaseObject  implements Persistent {
 				$this->setOldLink($value);
 				break;
 			case 3:
-				$this->setSlug($value);
+				$this->setType($value);
 				break;
 			case 4:
-				$this->setTitle($value);
+				$this->setSlug($value);
 				break;
 			case 5:
-				$this->setBreadcrumb($value);
+				$this->setTitle($value);
 				break;
 			case 6:
-				$this->setH1($value);
+				$this->setBreadcrumb($value);
 				break;
 			case 7:
-				$this->setMetaKeywords($value);
+				$this->setH1($value);
 				break;
 			case 8:
-				$this->setMetaDescription($value);
+				$this->setMetaKeywords($value);
 				break;
 			case 9:
-				$this->setBody($value);
+				$this->setMetaDescription($value);
 				break;
 			case 10:
-				$this->setCreatedAt($value);
+				$this->setBody($value);
 				break;
 			case 11:
+				$this->setCreatedAt($value);
+				break;
+			case 12:
 				$this->setUpdatedAt($value);
 				break;
 		} // switch()
@@ -1166,15 +1210,16 @@ abstract class BasePages extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
 		if (array_key_exists($keys[1], $arr)) $this->setIs301redirect($arr[$keys[1]]);
 		if (array_key_exists($keys[2], $arr)) $this->setOldLink($arr[$keys[2]]);
-		if (array_key_exists($keys[3], $arr)) $this->setSlug($arr[$keys[3]]);
-		if (array_key_exists($keys[4], $arr)) $this->setTitle($arr[$keys[4]]);
-		if (array_key_exists($keys[5], $arr)) $this->setBreadcrumb($arr[$keys[5]]);
-		if (array_key_exists($keys[6], $arr)) $this->setH1($arr[$keys[6]]);
-		if (array_key_exists($keys[7], $arr)) $this->setMetaKeywords($arr[$keys[7]]);
-		if (array_key_exists($keys[8], $arr)) $this->setMetaDescription($arr[$keys[8]]);
-		if (array_key_exists($keys[9], $arr)) $this->setBody($arr[$keys[9]]);
-		if (array_key_exists($keys[10], $arr)) $this->setCreatedAt($arr[$keys[10]]);
-		if (array_key_exists($keys[11], $arr)) $this->setUpdatedAt($arr[$keys[11]]);
+		if (array_key_exists($keys[3], $arr)) $this->setType($arr[$keys[3]]);
+		if (array_key_exists($keys[4], $arr)) $this->setSlug($arr[$keys[4]]);
+		if (array_key_exists($keys[5], $arr)) $this->setTitle($arr[$keys[5]]);
+		if (array_key_exists($keys[6], $arr)) $this->setBreadcrumb($arr[$keys[6]]);
+		if (array_key_exists($keys[7], $arr)) $this->setH1($arr[$keys[7]]);
+		if (array_key_exists($keys[8], $arr)) $this->setMetaKeywords($arr[$keys[8]]);
+		if (array_key_exists($keys[9], $arr)) $this->setMetaDescription($arr[$keys[9]]);
+		if (array_key_exists($keys[10], $arr)) $this->setBody($arr[$keys[10]]);
+		if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
+		if (array_key_exists($keys[12], $arr)) $this->setUpdatedAt($arr[$keys[12]]);
 	}
 
 	/**
@@ -1189,6 +1234,7 @@ abstract class BasePages extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(PagesPeer::ID)) $criteria->add(PagesPeer::ID, $this->id);
 		if ($this->isColumnModified(PagesPeer::IS_301REDIRECT)) $criteria->add(PagesPeer::IS_301REDIRECT, $this->is_301redirect);
 		if ($this->isColumnModified(PagesPeer::OLD_LINK)) $criteria->add(PagesPeer::OLD_LINK, $this->old_link);
+		if ($this->isColumnModified(PagesPeer::TYPE)) $criteria->add(PagesPeer::TYPE, $this->type);
 		if ($this->isColumnModified(PagesPeer::SLUG)) $criteria->add(PagesPeer::SLUG, $this->slug);
 		if ($this->isColumnModified(PagesPeer::TITLE)) $criteria->add(PagesPeer::TITLE, $this->title);
 		if ($this->isColumnModified(PagesPeer::BREADCRUMB)) $criteria->add(PagesPeer::BREADCRUMB, $this->breadcrumb);
@@ -1255,6 +1301,8 @@ abstract class BasePages extends BaseObject  implements Persistent {
 		$copyObj->setIs301redirect($this->is_301redirect);
 
 		$copyObj->setOldLink($this->old_link);
+
+		$copyObj->setType($this->type);
 
 		$copyObj->setSlug($this->slug);
 

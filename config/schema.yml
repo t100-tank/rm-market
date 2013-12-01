@@ -4,6 +4,7 @@ propel:
     id:                 ~
     is_301redirect:    { type: boolean, default: false }
     old_link:          { type: varchar, size: 250, index: unique }
+    type:              { type: varchar, size: 25, required: true, index: true }
     slug:              { type: varchar, size: 250, required: true, index: unique }
     title:             { type: varchar, size: 250 }
     breadcrumb:        { type: varchar, size: 250 }

@@ -10,6 +10,14 @@
  */
 class carImportExportActions extends sfActions
 {
+
+    public function preExecute() {
+        parent::preExecute();
+        if (!$this->getUser()->getGuardUser()->hasPermission('zapchasti')) {
+            $this->redirect('@homepage');
+        }
+    }
+
     public function executeIndex(sfWebRequest $request) {}
 
     public function executeImportOriginalPartsForm(sfWebRequest $request) {}

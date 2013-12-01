@@ -1,17 +1,17 @@
 <?php
 
-require_once dirname(__FILE__).'/../lib/categoryGeneratorConfiguration.class.php';
-require_once dirname(__FILE__).'/../lib/categoryGeneratorHelper.class.php';
+require_once dirname(__FILE__).'/../lib/productGeneratorConfiguration.class.php';
+require_once dirname(__FILE__).'/../lib/productGeneratorHelper.class.php';
 
 /**
- * category actions.
+ * product actions.
  *
  * @package    rm-market
- * @subpackage category
+ * @subpackage product
  * @author     Arij
  * @version    SVN: $Id: actions.class.php 12474 2008-10-31 10:41:27Z fabien $
  */
-class categoryActions extends autoCategoryActions
+class productActions extends autoProductActions
 {
     public function preExecute() {
         parent::preExecute();

@@ -39,6 +39,7 @@ class PagesTableMap extends TableMap {
 		$this->addPrimaryKey('ID', 'Id', 'INTEGER', true, null, null);
 		$this->addColumn('IS_301REDIRECT', 'Is301redirect', 'BOOLEAN', false, null, false);
 		$this->addColumn('OLD_LINK', 'OldLink', 'VARCHAR', false, 250, null);
+		$this->addColumn('TYPE', 'Type', 'VARCHAR', true, 25, null);
 		$this->addColumn('SLUG', 'Slug', 'VARCHAR', true, 250, null);
 		$this->addColumn('TITLE', 'Title', 'VARCHAR', false, 250, null);
 		$this->addColumn('BREADCRUMB', 'Breadcrumb', 'VARCHAR', false, 250, null);

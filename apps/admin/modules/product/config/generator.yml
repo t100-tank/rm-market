@@ -1,0 +1,25 @@
+generator:
+  class: sfPropelGenerator
+  param:
+    model_class:           Product
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              Product
+    plural:                Products
+    route_prefix:          product
+    with_propel_route:     1
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title:             Запчасти
+        display:           [id, slug, name]
+      filter:  ~
+      form:    ~
+      edit:
+        title:             Редактирование запчасти
+      new:
+        title:             Новая запчасть
