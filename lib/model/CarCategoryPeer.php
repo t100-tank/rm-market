@@ -62,39 +62,6 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         );
 //        header('content-type: text/plain;charset=utf-8');
 
-//        $lastCategory = $lastSubCategory = null;
-//        $lastCategoryId = $lastSubCategoryId = null;
-//        $lastCategoryCars = $lastSubCategoryCars = array();
-
-//        $categoryGet = $con->prepare("SELECT ".CategoryPeer::ID." FROM ".CategoryPeer::TABLE_NAME." WHERE ".CategoryPeer::SLUG." = :slug AND ".CategoryPeer::PARENT_ID." IS NULL;");
-//        $subCategoryGet = $con->prepare("SELECT ".CategoryPeer::ID." FROM ".CategoryPeer::TABLE_NAME." WHERE ".CategoryPeer::SLUG." = :slug AND ".CategoryPeer::PARENT_ID." = :parent_id;");
-//        $categorySet = $con->prepare("INSERT INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::PARENT_ID.", ".CategoryPeer::SLUG.", ".CategoryPeer::NAME.") VALUES(:parent_id, :slug, :name);");
-//
-//        $carCategorySql = "INSERT IGNORE INTO ".CarCategoryPeer::TABLE_NAME."(".CarCategoryPeer::CAR_ID.", ".CarCategoryPeer::CATEGORY_ID.") VALUES";
-//
-//        $productGet = $con->prepare("SELECT ".ProductPeer::ID." FROM ".ProductPeer::TABLE_NAME." WHERE ".ProductPeer::SLUG." = :slug;");
-//        $productSet = $con->prepare("INSERT INTO ".ProductPeer::TABLE_NAME."(
-//                ".ProductPeer::CATEGORY_ID.",
-//                ".ProductPeer::UID.",
-//                ".ProductPeer::ANALOG_UID.",
-//                ".ProductPeer::AMOUNT.",
-//                ".ProductPeer::SLUG.",
-//                ".ProductPeer::NAME.",
-//                ".ProductPeer::DISTRIB_PRICE."
-//            )  VALUES(
-//                :category_id,
-//                :uid,
-//                NULL,
-//                :amount,
-//                :slug,
-//                :name,
-//                :price
-//            ) ON DUPLICATE KEY UPDATE
-//                ".ProductPeer::CATEGORY_ID." = :category_id,
-//                ".ProductPeer::AMOUNT." = :amount,
-//                ".ProductPeer::DISTRIB_PRICE." = :price
-//            ;");
-
         $createTable = "CREATE TEMPORARY TABLE i_o(
             `uid` varchar(100) NOT NULL,
             `name` varchar(250) NOT NULL,
@@ -186,141 +153,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
 //                echo $i." Mem: ".memory_get_usage().', Peak:'.memory_get_peak_usage()."\r\n";
 //                ob_flush();
 //            }
-
-            /*
-            if (is_null($lastCategoryId) || !is_null($lastCategoryId) && $gather['cat1'] != $lastCategory) {
-                if (!is_null($lastCategoryId) && count($lastCategoryCars)) {
-                    $carCategorySql1 = '';
-                    foreach ($lastCategoryCars as $key => $value) {
-                        $carCategorySql1 .= ',( '.$key.', '.$lastCategoryId.' )';
-                    }
-                    $carCategorySql1 = substr($carCategorySql1, 1);
-                    if (!empty($carCategorySql1)) $con->query($carCategorySql.$carCategorySql1);
-                    unset($carCategorySql1);
-                    // flush category_cars list
-                    $lastCategoryCars = array();
-                }
-
-                $slug = Common::slugify($gather['cat1']);
-                $categoryGet->execute(array(
-                    ':slug' => $slug
-                ));
-                $row = $categoryGet->fetch(PDO::FETCH_NUM);
-                if (!$row) {
-                    $categorySet->execute(array(
-                        ':slug' => $slug,
-                        ':name' => $gather['cat1'],
-                        ':parent_id' => null
-                    ));
-                    $row = array($con->lastInsertId());
-                }
-                $lastCategory = $gather['cat1'];
-                $lastCategoryId = $row[0];
-                // sub cat should be flushed
-                $lastSubCategory = $lastSubCategoryId = null;
-            }
-            foreach ($labels as $label) {
-                if (!empty($label) && isset($labelTransition[$label])) {
-                    $lastCategoryCars[ $labelTransition[$label] ] = true;
-                }
-            }
-
-            if (is_null($lastSubCategoryId) || !is_null($lastSubCategoryId) && $gather['cat2'] != $lastSubCategory) {
-                if (!is_null($lastSubCategoryId) && count($lastSubCategoryCars)) {
-                    $carSubCategorySql1 = '';
-                    foreach ($lastSubCategoryCars as $key => $value) {
-                        $carSubCategorySql1 .= ',( '.$key.', '.$lastSubCategoryId.' )';
-                    }
-                    $carSubCategorySql1 = substr($carSubCategorySql1, 1);
-                    if (!empty($carSubCategorySql1)) $con->query($carCategorySql.$carSubCategorySql1);
-                    unset($carSubCategorySql1);
-                    // flush category_cars list
-                    $lastSubCategoryCars = array();
-                }
-
-                $slug = Common::slugify($lastCategory.'-'.$gather['cat2']);
-                $subCategoryGet->execute(array(
-                    ':slug' => $slug,
-                    ':parent_id' => $lastCategoryId
-                ));
-                $row = $subCategoryGet->fetch(PDO::FETCH_NUM);
-                if (!$row) {
-                    $categorySet->execute(array(
-                        ':slug' => $slug,
-                        ':name' => $gather['cat2'],
-                        ':parent_id' => $lastCategoryId
-                    ));
-                    $row = array($con->lastInsertId());
-                }
-                $lastSubCategory = $gather['cat2'];
-                $lastSubCategoryId = $row[0];
-            }
-            foreach ($labels as $label) {
-                if (!empty($label) && isset($labelTransition[$label])) {
-                    $lastSubCategoryCars[ $labelTransition[$label] ] = true;
-                }
-            }
-
-            $slug = Common::slugify($gather['uid'].'-'.$gather['name']);
-            $productSet->execute(array(
-                ':category_id' => $lastSubCategoryId,
-                ':uid' => $gather['uid'],
-                ':amount' => (int)$gather['amount'],
-                ':slug' => $slug,
-                ':name' => $gather['name'],
-                ':price' => Common::getFromPriceFormat($gather['distribution_price'])
-            ));*/
-
-//            $p = ProductPeer::tryAdd($lastSubCategory->getId(), (int)$gather['amount'], $gather['uid'], null, Common::slugify($gather['uid'].'-'.$gather['name']), $gather['name'], Common::getFromPriceFormat($gather['distribution_price']));
-//            foreach ($labels as $label) {
-//                echo "Adding (".$lastSubCategory->getId().") to: ".$label;
-//                if (!empty($label) && isset($labelTransition[$label])) {
-//                    echo "success";
-//                    $cc = CarCategoryPeer::tryAdd($labelTransition[$label], $lastSubCategory->getId());
-//                    unset($cc); //free memory
-//                } else {
-//                    echo "failed ".(!empty($label)?'+':'-').' && '.(isset($labelTransition[$label])?'+':'-').' => '.(!empty($label) && isset($labelTransition[$label]) ? '+': '-');
-//                }
-//                echo "\r\n";
-//
-//                echo "Adding p (".$p->getId().") to: ".$label;
-//                if (!empty($label) && isset($labelTransition[$label])) {
-//                    echo "success";
-//                    $cp = CarProductPeer::tryAdd($labelTransition[$label], $p->getId());
-//                    unset($cp); //free memory
-//                } else {
-//                    echo "failed ".(!empty($label)?'+':'-').' && '.(isset($labelTransition[$label])?'+':'-').' => '.(!empty($label) && isset($labelTransition[$label]) ? '+': '-');
-//                }
-//            }
-//            unset($row, $p);
-//            echo "Mem: ".memory_get_usage(true).', Peak:'.memory_get_peak_usage(true)."\r\n";
-//            ob_flush();
         }
-
-//        if (!is_null($lastCategoryId) && count($lastCategoryCars)) {
-//            $carCategorySql1 = '';
-//            foreach ($lastCategoryCars as $key => $value) {
-//                $carCategorySql1 .= ',( '.$key.', '.$lastCategoryId.' )';
-//            }
-//            $carCategorySql1 = substr($carCategorySql1, 1);
-//            if (!empty($carCategorySql1)) $con->query($carCategorySql.$carCategorySql1);
-//            unset($carCategorySql1);
-//            // flush the list
-//            unset($lastCategoryCars);
-//        }
-//
-//        if (!is_null($lastSubCategoryId) && count($lastSubCategoryCars)) {
-//            $carSubCategorySql1 = '';
-//            foreach ($lastSubCategoryCars as $key => $value) {
-//                $carSubCategorySql1 .= ',( '.$key.', '.$lastSubCategoryId.' )';
-//            }
-//            $carSubCategorySql1 = substr($carSubCategorySql1, 1);
-//            if (!empty($carSubCategorySql1)) $con->query($carCategorySql.$carSubCategorySql1);
-//            unset($carSubCategorySql1);
-//            // flush category_cars list
-//            unset($lastSubCategoryCars);
-//        }
-
 
         if (count($list)) {
             $con->query($insertRowSql.implode(',',$list));
@@ -360,7 +193,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             FROM
                 `i_o`
             GROUP BY
-                `cat2`;");
+                `cat2_slug`;");
         $stmt->execute();
         unset($stmt);
         // cache ids
@@ -424,7 +257,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             FROM
                 `i_o`
             GROUP BY
-                `cat2`;");
+                `cat2_id`;");
         $stmt->execute();
         unset($stmt);
 

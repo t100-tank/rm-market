@@ -43,6 +43,20 @@ class CategoryPeer extends BaseCategoryPeer {
         return $cat;
     }
 
+    public static function getSelectTree($addEmpty) {
+        $con = Propel::getConnection();
+        $stmt = $con->prepare('SELECT '.self::ID.', IF('.self::PARENT_ID.' IS NULL, '.self::NAME.', CONCAT(\'- \', '.self::NAME.')), IF('.self::PARENT_ID.' IS NULL, '.self::ID.', CONCAT('.self::PARENT_ID.', \'-\', '.self::SLUG.')) AS `ordering` FROM '.self::TABLE_NAME.' ORDER BY `ordering`;');
+        $stmt->execute();
+        $list = array();
+        if ($addEmpty) {
+            $list[''] = '';
+        }
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $list[ $row[0] ] = $row[1];
+        }
+        return $list;
+    }
+
 }
 
 // CategoryPeer

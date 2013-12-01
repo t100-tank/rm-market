@@ -7,3 +7,5 @@
 /.idea
 /cache
 /config/databases.yml
+*schema.xml
+*data.xml
