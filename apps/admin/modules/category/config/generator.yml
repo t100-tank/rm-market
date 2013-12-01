@@ -13,9 +13,16 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        parent_id:         { label: Top-категория }
+        name:              { label: Имя }
+        slug:              { label: Slug }
+        car_category_list: { label: Марка авто }
+      list:
+        title:             Категории запчастей
       filter:  ~
       form:    ~
-      edit:    ~
-      new:     ~
+      edit:
+        title:             Редактирование категории
+      new:
+        title:             Новая категория

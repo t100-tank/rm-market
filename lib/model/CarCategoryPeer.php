@@ -257,7 +257,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             FROM
                 `i_o`
             GROUP BY
-                `cat2_id`;");
+                `car_id`, `cat2_id`;");
         $stmt->execute();
         unset($stmt);
 
