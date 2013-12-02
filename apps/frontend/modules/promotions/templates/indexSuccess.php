@@ -8,7 +8,7 @@
         <?php foreach ($list as $promo) { ?>
             <div class="row margin-bottom10">
                 <div class="col-md-6 col-sm-6 col-xs-12 adv-img">
-                    <a href="#"><img src="<?php echo $promo->getHtmlImagePath(); ?>" class="img-responsive"/></a>
+                    <a href="<?php echo url_for('@promotion?slug='.$promo->getSlug()); ?>"><img src="<?php echo $promo->getHtmlImagePath(); ?>" class="img-responsive"/></a>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <h2><a href="<?php echo url_for('@promotion?slug='.$promo->getSlug()); ?>"><?php echo $promo->getTitle(); ?></a></h2>
