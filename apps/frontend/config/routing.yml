@@ -46,7 +46,7 @@ content_page:
 zapchasti:
   url:   /avtozapchasti/
   param: { module: zapchasti, action: index }
-  
+
 # generic rules
 # please, remove them by adding more specific rules
 #default_index:

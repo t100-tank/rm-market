@@ -91,6 +91,56 @@ class zapchastiActions extends sfActions {
         $this->workoutPage();
     }
 
+    public function executeProduct(sfWebRequest $request) {
+        $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
+        $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
+        $this->product = ProductPeer::retrieveBySlug($request->getParameter('product'));
+        $isCarProduct = false; // CarProductPeer::retrieveByPK()instanceof CarProduct;
+        if (!is_null($this->label) && !is_null($this->category) && !is_null($this->product)) {
+            if (!is_null($this->category->getCategoryRelatedByParentId())) {
+                $this->topCategory = $this->category->getCategoryRelatedByParentId();
+                $isCarProduct = $this->category->checkCarId($this->label->getId()) && (CarProductPeer::retrieveByPK($this->label->getId(), $this->product->getId()) instanceof CarProduct);
+            }
+        }
+        if (!$isCarProduct)
+            $this->redirect404();
+
+//        default values
+        $this->breadcrumb = array(
+            array(
+                'link' => '@homepage',
+                'title' => 'Главная'
+            ),
+            array(
+                'link' => '@zapchasti',
+                'title' => 'Автозапчасти'
+            ),
+            array(
+                'link' => '@zapchasti_label?car_label='.$this->label->getSlug(),
+                'title' => $this->label->getName()
+            ),
+            array(
+                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->topCategory->getSlug(),
+                'title' => $this->topCategory->getName()
+            ),
+            array(
+                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->category->getSlug(),
+                'title' => $this->category->getName()
+            ),
+            array(
+                'link' => null,
+                'title' => $this->product->getName()
+            )
+        );
+
+        $this->getResponse()->setTitle($this->label->getName());
+        $this->getResponse()->addMeta('description', $this->label->getName());
+        $this->getResponse()->addMeta('keywords', $this->label->getName());
+
+//        check existing page
+        $this->workoutPage();
+    }
+
     /**
      * $this->breadcrumb (array) default breadcrumb
      */
@@ -106,7 +156,7 @@ class zapchastiActions extends sfActions {
 
             $breadcrumb = json_decode($this->page->getBreadcrumb(), true);
             if (is_array($breadcrumb)) {
-                $this->breadcrumb = array_splice($this->breadcrumb, 0, 1);
+                $this->breadcrumb = array_splice($this->breadcrumb, 0, count($this->breadcrumb) - count($breadcrumb));
                 foreach ($breadcrumb as $item) {
                     $this->breadcrumb[] = array(
                         'link' => (!empty($item['link'])) ? $item['link']: null,
