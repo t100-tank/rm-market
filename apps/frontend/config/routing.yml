@@ -17,18 +17,15 @@ form_chcode:
   url:   /form-chcode
   param: { module: forms, action: chcode }
   
-zapchasti:
-  url:   /avtozapchasti/
-  param: { module: zapchasti, action: index }
 zapchasti_label:
   url:   /avtozapchasti/:car_label/
   param: { module: zapchasti, action: label }
 zapchasti_label_category:
-  url:   /avtozapchasti/:car_label/:category
-  param: { module: zapchasti, action: mark }
+  url:   /avtozapchasti/:car_label/:category/
+  param: { module: zapchasti, action: category }
 zapchasti_label_category_product:
-  url:   /avtozapchasti/:car_label/:category/:product
-  param: { module: zapchasti, action: mark }
+  url:   /avtozapchasti/:car_label/:category/:product/
+  param: { module: zapchasti, action: product }
 # default rules
 
 homepage:
@@ -44,6 +41,12 @@ content_page:
   param: { module: home, action: page }
   requirements:
     slug: .*
+
+#shoud be after @content_page, as @zapchasti is used as link marker
+zapchasti:
+  url:   /avtozapchasti/
+  param: { module: zapchasti, action: index }
+  
 # generic rules
 # please, remove them by adding more specific rules
 #default_index:

@@ -10,25 +10,95 @@
  */
 class zapchastiActions extends sfActions {
 
-    public function executeIndex(sfWebRequest $request) {
-
-    }
-
     public function executeLabel(sfWebRequest $request) {
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
-        if (!$this->label)
+        if (is_null($this->label))
             $this->redirect404();
 
-        $opt = $this->getContext()->getRouting()->getOptions('context');
-        $link = $opt['context']['path_info'];
-        $this->page = PagesPeer::retrieveBySlug($link);
-
+//        default values
         $this->breadcrumb = array(
             array(
                 'link' => '@homepage',
                 'title' => 'Главная'
+            ),
+            array(
+                'link' => '@zapchasti',
+                'title' => 'Автозапчасти'
+            ),
+            array(
+                'link' => null,
+                'title' => $this->label->getName()
             )
         );
+        $this->getResponse()->setTitle($this->label->getName());
+        $this->getResponse()->addMeta('description', $this->label->getName());
+        $this->getResponse()->addMeta('keywords', $this->label->getName());
+
+//        check existing page
+        $this->workoutPage();
+    }
+
+    public function executeCategory(sfWebRequest $request) {
+        $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
+        $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
+        $isCarCategory = $this->category->checkCarId($this->label->getId());
+        if (!is_null($this->category)) {
+            if (!is_null($this->category->getCategoryRelatedByParentId())) {
+                $this->topCategory = $this->category->getCategoryRelatedByParentId();
+            } else {
+                $this->topCategory = $this->category;
+                $this->category = null;
+            }
+        }
+        if (!$isCarCategory)
+            $this->redirect404();
+
+//        default values
+        $this->breadcrumb = array(
+            array(
+                'link' => '@homepage',
+                'title' => 'Главная'
+            ),
+            array(
+                'link' => '@zapchasti',
+                'title' => 'Автозапчасти'
+            ),
+            array(
+                'link' => '@zapchasti_label?car_label='.$this->label->getSlug(),
+                'title' => $this->label->getName()
+            )
+        );
+        if (is_null($this->category)) {
+            $this->breadcrumb[] = array(
+                'link' => null,
+                'title' => $this->topCategory->getName()
+            );
+        } else {
+            $this->breadcrumb[] = array(
+                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->topCategory->getSlug(),
+                'title' => $this->topCategory->getName()
+            );
+            $this->breadcrumb[] = array(
+                'link' => null,
+                'title' => $this->category->getName()
+            );
+        };
+        $this->getResponse()->setTitle($this->label->getName());
+        $this->getResponse()->addMeta('description', $this->label->getName());
+        $this->getResponse()->addMeta('keywords', $this->label->getName());
+
+//        check existing page
+        $this->workoutPage();
+    }
+
+    /**
+     * $this->breadcrumb (array) default breadcrumb
+     */
+    private function workoutPage() {
+        $opt = $this->getContext()->getRouting()->getOptions('context');
+        $link = $opt['context']['path_info'];
+        $this->page = PagesPeer::retrieveBySlug($link);
+
         if ($this->page instanceof Pages) {
             $this->getResponse()->setTitle($this->page->getTitle());
             $this->getResponse()->addMeta('description', $this->page->getMetaDescription());
@@ -36,6 +106,7 @@ class zapchastiActions extends sfActions {
 
             $breadcrumb = json_decode($this->page->getBreadcrumb(), true);
             if (is_array($breadcrumb)) {
+                $this->breadcrumb = array_splice($this->breadcrumb, 0, 1);
                 foreach ($breadcrumb as $item) {
                     $this->breadcrumb[] = array(
                         'link' => (!empty($item['link'])) ? $item['link']: null,
@@ -43,26 +114,13 @@ class zapchastiActions extends sfActions {
                     );
                 }
             } else {
+                $this->breadcrumb = array_splice($this->breadcrumb, 0, count($this->breadcrumb)-1);
                 $this->breadcrumb[] = array(
                     'link' => null,
                     'title' => $this->page->getBreadcrumb()
                 );
             }
-        } else {
-            $this->getResponse()->setTitle($this->label->getName());
-            $this->getResponse()->addMeta('description', $this->label->getName());
-            $this->getResponse()->addMeta('keywords', $this->label->getName());
-
-            $this->breadcrumb[] = array(
-                    'link' => '@zapchasti',
-                    'title' => 'Автозапчасти'
-                );
-            $this->breadcrumb[] = array(
-                    'link' => null,
-                    'title' => $this->label->getName()
-                );
         }
-
     }
 
 }

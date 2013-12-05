@@ -20,4 +20,19 @@ class Category extends BaseCategory {
     public function __toString() {
         return $this->getName();
     }
+
+    public function checkCarId($carId) {
+        $c = new Criteria();
+        if (!is_null($this->getParentId())) {
+            $c->add(CarCategoryPeer::CAR_ID, $carId);
+            $c->add(CarCategoryPeer::CATEGORY_ID, $this->getId());
+        } else {
+            $c->addAlias('c', CategoryPeer::TABLE_NAME);
+            $c->addJoin(CategoryPeer::alias('c', CategoryPeer::ID), CategoryPeer::PARENT_ID);
+            $c->addJoin(CategoryPeer::ID, CarCategoryPeer::CATEGORY_ID);
+            $c->addAlias('c.ID', $this->getId());
+            $c->add(CarCategoryPeer::CAR_ID, $carId);
+        }
+        return CarCategoryPeer::doCount($c) > 0;
+    }
 } // Category

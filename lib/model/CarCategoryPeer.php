@@ -266,5 +266,5 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
 //        echo "Time total: ".$time.', Avg.each:'.((float)$time/($i ? $i : 1))."\r\n";
 //        die();
         return $report;
-     }
+    }
 } // CarCategoryPeer
