@@ -5,7 +5,7 @@
     <div class="wrap1 container">
         <h1><?php echo is_object($page) ? $page->getH1(): $promo->getH1(); ?></h1>
         <?php echo is_object($page) ? $page->getBody(): ''; ?>
-        <div class="row margin-bottom10">
+        <div class="row margin-bottom30">
             <div class="col-md-6 col-sm-6 col-xs-12 adv-img">
                 <img src="<?php echo $promo->getHtmlImagePath(); ?>" class="img-responsive"/>
             </div>

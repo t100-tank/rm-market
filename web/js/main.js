@@ -5,6 +5,7 @@ $(document).ready(function(){
     homeCarouselInit();
     homeMenuInit();
     formsInit();
+    zpTreeInit();
     
     $.datepicker.regional['ru'] = {
         closeText: 'Закрыть',
@@ -200,4 +201,19 @@ function formsInit() {
         $(this).find('img').attr('src', href+'?_='+dt.getTime());
         return false;
     });
+}
+
+function zpTreeInit() {
+    if ($('.content-static .category-tree').length) {
+        $('.content-static .category-tree .top-item .toggle').click(function(){
+            $(this).closest('.top-item').toggleClass('toggled');
+            if ($(this).closest('.top-item').hasClass('toggled')) {
+                $(this).html('&raquo;')
+                    .closest('.top-item').find('a.top-link').addClass('selected');
+            } else {
+                $(this).html('&laquo;')
+                    .closest('.top-item').find('a.top-link').removeClass('selected');
+            }
+        });
+    }
 }

@@ -3,7 +3,8 @@
 <?php include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb)); ?>
 <div class="content-static">
     <div class="wrap1 container">
-        <div class="row margin-bottom10">
+        <?php include_partial('zapchasti/search'); ?>
+        <div class="row margin-bottom30 zapchasti">
             <div class="col-md-3 col-sm-3 col-xs-12 category-tree">
                 <?php include_component('zapchasti', 'tree', array('carLabel' => $label->getSlug(), 'carLabelId' => $label->getId())); ?>
             </div>

@@ -48,4 +48,15 @@ class CarLabelPeer extends BaseCarLabelPeer {
         }
         return $cl;
     }
+
+    public static function getTopLabelList() {
+        $con = Propel::getConnection();
+        $stmt = $con->prepare("SELECT ".self::ID.", ".self::NAME." FROM ".self::TABLE_NAME." WHERE ".self::PARENT_ID." IS NULL ORDER BY ".self::SLUG.";");
+        $list = array();
+        $stmt->execute();
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $list[ $row[0] ] = $row[1];
+        }
+        return $list;
+    }
 } // CarLabelPeer

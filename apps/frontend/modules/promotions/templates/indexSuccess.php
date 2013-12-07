@@ -6,7 +6,7 @@
         <h1><?php echo is_object($page) ? $page->getH1(): 'Акции'; ?></h1>
         <?php echo is_object($page) ? $page->getBody(): ''; ?>
         <?php foreach ($list as $promo) { ?>
-            <div class="row margin-bottom10">
+            <div class="row margin-bottom30">
                 <div class="col-md-6 col-sm-6 col-xs-12 adv-img">
                     <a href="<?php echo url_for('@promotion?slug='.$promo->getSlug()); ?>"><img src="<?php echo $promo->getHtmlImagePath(); ?>" class="img-responsive"/></a>
                 </div>
