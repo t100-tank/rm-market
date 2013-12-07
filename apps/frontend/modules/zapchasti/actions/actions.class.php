@@ -11,6 +11,8 @@
 class zapchastiActions extends sfActions {
 
     public function executeLabel(sfWebRequest $request) {
+        $this->getUser()->setAttribute('search', array());
+
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         if (is_null($this->label))
             $this->redirect404();
@@ -43,6 +45,8 @@ class zapchastiActions extends sfActions {
     }
 
     public function executeCategory(sfWebRequest $request) {
+        $this->getUser()->setAttribute('search', array());
+
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
         $isCarCategory = $this->category->checkCarId($this->label->getId());
@@ -101,6 +105,8 @@ class zapchastiActions extends sfActions {
     }
 
     public function executeProduct(sfWebRequest $request) {
+        $this->getUser()->setAttribute('search', array());
+
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
         $this->product = ProductPeer::retrieveBySlug($request->getParameter('product'));
