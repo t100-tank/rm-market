@@ -5,7 +5,7 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <select name="search[car_label]" class="form-control">
                         <?php foreach (CarLabelPeer::getTopLabelList() as $id => $name) { ?>
-                            <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
+                            <option value="<?php echo $id; ?>"<?php echo ($carLabelId == $id) ? ' selected="selected"': ''; ?>><?php echo $name; ?></option>
                         <?php } ?>
                     </select>
                 </div>

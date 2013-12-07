@@ -778,7 +778,8 @@ hr {
 }
 
 .content-static .category-tree a:hover,
-.content-static .category-tree a.selected {
+.content-static .category-tree a.selected,
+.content-static .category-tree a.pre-selected{
     color: #be1e2c;
     text-decoration: underline;
 }

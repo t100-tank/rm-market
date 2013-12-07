@@ -5,6 +5,7 @@ class zapchastiComponents extends sfComponents {
     /** generating tree of the categories
      * @param $carLabel
      * @param $carLabelId
+     * @param $categoryId
      */
     public function executeTree() {
         $cache = new sfFileCache(array('cache_dir' => sfConfig::get('sf_cache_dir').DIRECTORY_SEPARATOR.sfConfig::get('app_category_cache_dir')));
