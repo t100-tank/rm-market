@@ -60,4 +60,17 @@ class ProductPeer extends BaseProductPeer {
         return $c;
     }
 
+    public static function getProductsBySearchCriteria($carLableId, $uid, $name) {
+        $c = new Criteria();
+        $c->addJoin(self::ID, CarProductPeer::PRODUCT_ID, Criteria::LEFT_JOIN);
+        $c->add(CarProductPeer::CAR_ID, $carLableId);
+        if (!empty($uid)) {
+            $c->add(self::UID, $uid.'%', Criteria::LIKE);
+        }
+        if (!empty($name)) {
+            $c->add(self::NAME, $name.'%', Criteria::LIKE);
+        }
+        return $c;
+    }
+
 } // ProductPeer

@@ -4,7 +4,7 @@
 <?php include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb)); ?>
 <div class="content-static">
     <div class="wrap1 container">
-        <?php include_partial('zapchasti/search', array('carLabelId' => $label->getId())); ?>
+        <?php include_partial('zapchasti/search', array('carLabelSlug' => $label->getSlug())); ?>
         <div class="row margin-bottom30 zapchasti">
             <div class="col-md-3 col-sm-3 col-xs-12 category-tree">
                 <?php include_component('zapchasti', 'tree', array('carLabel' => $label->getSlug(), 'carLabelId' => $label->getId(), 'categoryId' => is_null($category) ? $topCategory->getId(): $category->getId() )); ?>

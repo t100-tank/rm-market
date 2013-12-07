@@ -237,22 +237,22 @@
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-md-3 col-sm-3 col-xs-6 m-opel">
-                                                <a href="/avtozapchasti/opel/" class="opel">
+                                                <a href="<?php echo url_for('zapchasti_label', array('car_label' => 'opel')); ?>" class="opel">
                                                     <img src="/images/menu/opel.png" title="opel" class="img-responsive"/>
                                                 </a>
                                             </div>
                                             <div class="col-md-3 col-sm-3 col-xs-6 m-chevrolet">
-                                                <a href="/avtozapchasti/chevrolet/" class="chevrolet">
+                                                <a href="<?php echo url_for('zapchasti_label', array('car_label' => 'chevrolet')); ?>" class="chevrolet">
                                                     <img src="/images/menu/chevrolet.png" title="chevrolet" class="img-responsive"/>
                                                 </a>
                                             </div>
                                             <div class="col-md-3 col-sm-3 col-xs-6 m-cadillac">
-                                                <a href="/avtozapchasti/cadillac/" class="cadillac">
+                                                <a href="<?php echo url_for('zapchasti_label', array('car_label' => 'cadillac')); ?>" class="cadillac">
                                                     <img src="/images/menu/cadillac.png" title="cadillac" class="img-responsive"/>
                                                 </a>
                                             </div>
                                             <div class="col-md-3 col-sm-3 col-xs-6 m-hummer">
-                                                <a href="/avtozapchasti/hummer/" class="hummer">
+                                                <a href="?php echo url_for('zapchasti_label', array('car_label' => 'hummer')); ?>" class="hummer">
                                                     <img src="/images/menu/hummer.png" title="hummer" class="img-responsive"/>
                                                 </a>
                                             </div>

@@ -87,9 +87,9 @@ class zapchastiActions extends sfActions {
                 'title' => $this->category->getName()
             );
         };
-        $this->getResponse()->setTitle($this->label->getName());
-        $this->getResponse()->addMeta('description', $this->label->getName());
-        $this->getResponse()->addMeta('keywords', $this->label->getName());
+        $this->getResponse()->setTitle(($this->category) ? $this->category->getName(): $this->topCategory->getName());
+        $this->getResponse()->addMeta('description', ($this->category) ? $this->category->getName(): $this->topCategory->getName());
+        $this->getResponse()->addMeta('keywords', ($this->category) ? $this->category->getName(): $this->topCategory->getName());
 
         $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
         $this->pager->setCriteria( ProductPeer::getProductsByCarLabelCategoryCriteria( $this->label->getId(), $this->topCategory->getId(), ($this->category) ? $this->category->getId(): null ) );
@@ -142,11 +142,73 @@ class zapchastiActions extends sfActions {
             )
         );
 
-        $this->getResponse()->setTitle($this->label->getName());
+        $this->getResponse()->setTitle($this->product->getName());
+        $this->getResponse()->addMeta('description', $this->product->getName());
+        $this->getResponse()->addMeta('keywords', $this->product->getName());
+
+//        check existing page
+        $this->workoutPage();
+    }
+
+    public function executeSearch(sfWebRequest $request) {
+        // retrieve search params
+        $search = $request->getPostParameter('search',
+            $this->getUser()->getAttribute('search', null)
+        );
+
+        // clean-up params
+        $list = array('check', 'car_label', 'uid', 'name');
+        $search = is_null($search) ? array(): $search;
+        foreach ($list as $index) {
+            $search[$index] = isset($search[$index]) ? trim($search[$index]): '';
+        }
+
+        // check human
+        if (is_null($this->getUser()->getAttribute('search_key')) ||
+            (!empty($search['check']) && $search['check'] != $this->getUser()->getAttribute('search_key')) ||
+            empty($search['car_label']) || strlen($search['uid'].$search['name']) == 0) {
+            $this->redirect('zapchasti_label', array('car_label' => $request->getParameter('car_label')));
+        }
+
+        // set session
+        unset($search['check']);
+        $this->getUser()->setAttribute('search', $search);
+
+        // redirect to correct label, if there is a necessity
+        if ($request->getParameter('car_label') != $search['car_label']) {
+            $this->redirect('zapchasti_label_search', array('car_label' => $search['car_label']));
+        }
+
+        $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
+
+        $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
+        $this->pager->setCriteria( ProductPeer::getProductsBySearchCriteria( $this->label->getId(), $search['uid'], $search['name'] ) );
+        $this->pager->setPage( $request->getParameter('page', 1) );
+        $this->pager->init();
+
+        $this->breadcrumb = array(
+            array(
+                'link' => '@homepage',
+                'title' => 'Главная'
+            ),
+            array(
+                'link' => '@zapchasti',
+                'title' => 'Автозапчасти'
+            ),
+            array(
+                'link' => '@zapchasti_label?car_label='.$this->label->getSlug(),
+                'title' => $this->label->getName()
+            ),
+            array(
+                'link' => null,
+                'title' => 'Поиск'
+            )
+        );
+
+        $this->getResponse()->setTitle($this->label->getName().' Поиск');
         $this->getResponse()->addMeta('description', $this->label->getName());
         $this->getResponse()->addMeta('keywords', $this->label->getName());
 
-//        check existing page
         $this->workoutPage();
     }
 
