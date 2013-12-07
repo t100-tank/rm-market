@@ -42,15 +42,15 @@
                                             <li class="dropdown div">
                                                 <a href="#" class="dropdown-toggle top-nav about" data-toggle="dropdown">О компании</a>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="/history/">История</a></li>
+                                                    <li><a href="<?php echo url_for_ext('@content_page?slug=history/'); ?>">История</a></li>
                                                     <li><a href="/progress/">Карьера и вакансии</a></li>
                                                     <li><a href="/progress/">Галерея</a></li>
                                                 </ul>
                                             </li>
                                             <li class="div"><a href="/progress/" class="top-nav news">Новости</a></li>
                                             <li class="div"><a href="<?php echo url_for('@promotions'); ?>" class="top-nav promo">Акции</a></li>
-                                            <li class="div"><a href="/progress/" class="top-nav partners">Партнеры</a></li>
-                                            <li class="div"><a href="/contact/" class="top-nav contacts">Контакты</a></li>
+                                            <li class="div"><a href="<?php echo url_for_ext('@content_page?slug=partners/'); ?>" class="top-nav partners">Партнеры</a></li>
+                                            <li class="div"><a href="<?php echo url_for_ext('@content_page?slug=contact/'); ?>" class="top-nav contacts">Контакты</a></li>
                                         </ul>
                                     </div>
                                 </nav>
@@ -74,7 +74,7 @@
                                 <a href="/progress/" class="gears">Поиск автозапчастей</a>
                             </div>
                             <div class="sec-menu-item">
-                                <a href="/corporate" class="network">Корпоративным клиентам</a>
+                                <a href="<?php echo url_for_ext('@content_page?slug=corporate/'); ?>" class="network">Корпоративным клиентам</a>
                             </div>
                         </div>
                         <div id="promotions" class="col-md-8 col-sm-8 col-xs-12 carousel slide">
@@ -151,14 +151,14 @@
                                         <div class="row">
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/progress/" class="avtomobili-v-nalichii" title="Автомобили в наличии">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=avtosalon/'); ?>" class="avtomobili-v-nalichii" title="Автомобили в наличии">
                                                     <span class="ico"></span>
                                                     <span class="name">Автомобили в наличии</span>
                                                 </a>
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/progress/" class="komissionnaya-realizaciya" title="Комиссионная реализация">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=realizaciya/'); ?>" class="komissionnaya-realizaciya" title="Комиссионная реализация">
                                                     <span class="ico"></span>
                                                     <span class="name">Комиссионная реализация</span>
                                                 </a>
@@ -179,7 +179,7 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/progress/" class="vikup-avtomobiley" title="Выкуп автомобилей">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=vykup/'); ?>" class="vikup-avtomobiley" title="Выкуп автомобилей">
                                                     <span class="ico"></span>
                                                     <span class="name">Выкуп автомобилей</span>
                                                 </a>
@@ -193,14 +193,14 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/progress/" class="trade-in" title="Trade-in">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=tradein/'); ?>" class="trade-in" title="Trade-in">
                                                     <span class="ico"></span>
                                                     <span class="name">Trade-in</span>
                                                 </a>
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/podbor/" class="pomosch-v-podbore" title="Помощь в подборе авто">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=podbor/'); ?>" class="pomosch-v-podbore" title="Помощь в подборе авто">
                                                     <span class="ico"></span>
                                                     <span class="name">Помощь в подборе авто</span>
                                                 </a>
@@ -288,7 +288,7 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/shinomontag/" class="chip-tuning" title="Шиномонтаж">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=shinomontag/'); ?>" class="chip-tuning" title="Шиномонтаж">
                                                     <span class="ico"></span>
                                                     <span class="name">Шиномонтаж</span>
                                                 </a>
@@ -309,14 +309,14 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/evakuator/" class="evakuacija" title="Эвакуация">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=evakuator/'); ?>" class="evakuacija" title="Эвакуация">
                                                     <span class="ico"></span>
                                                     <span class="name">Эвакуация</span>
                                                 </a>
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/podbor/" class="pomosch-v-podbore" title="Помощь в подборе авто">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=podbor/'); ?>" class="pomosch-v-podbore" title="Помощь в подборе авто">
                                                     <span class="ico"></span>
                                                     <span class="name">Помощь в подборе авто</span>
                                                 </a>
@@ -330,7 +330,7 @@
                                             </div>
                                             <div class="col-md-4 col-sm-6 col-xs-12 u-item">
                                                 <div class="corner lt"></div><div class="corner lb"></div><div class="corner rt"></div><div class="corner rb"></div>
-                                                <a href="/carwash/" class="avtomoyka" title="Автомойка">
+                                                <a href="<?php echo url_for_ext('@content_page?slug=carwash/'); ?>" class="avtomoyka" title="Автомойка">
                                                     <span class="ico"></span>
                                                     <span class="name">Автомойка</span>
                                                 </a>
@@ -364,7 +364,7 @@
                             <a href="/progress/" class="gears">Поиск автозапчастей</a>
                         </div>
                         <div class="col-md-3 col-sm-6 col-xs-12 sec-menu-item">
-                            <a href="/corporate/" class="network">Корпоративным клиентам</a>
+                            <a href="<?php echo url_for_ext('@content_page?slug=corporate/'); ?>" class="network">Корпоративным клиентам</a>
                         </div>
                     </div>
                 </div>
@@ -414,20 +414,20 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">О компании</a>
                                         <ul class="dropdown-menu">
-                                            <li><a tabindex="-1" href="/history">История</a></li>
+                                            <li><a tabindex="-1" href="<?php echo url_for_ext('@content_page?slug=history/'); ?>">История</a></li>
                                             <li><a tabindex="-1" href="#">Карьера и вакансии</a></li>
                                             <li><a tabindex="-1" href="#">Галерея</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="/progress/">Новости</a></li>
                                     <li><a href="<?php echo url_for('@promotions'); ?>">Акции</a></li>
-                                    <li><a href="/progress/">Партнеры</a></li>
-                                    <li><a href="/contact/">Контакты</a></li>
+                                    <li><a href="<?php echo url_for_ext('@content_page?slug=partners/'); ?>">Партнеры</a></li>
+                                    <li><a href="<?php echo url_for_ext('@content_page?slug=contact/'); ?>">Контакты</a></li>
                                     <li><a data-toggle="modal" href="<?php echo url_for('@form_show?slug=backCall'); ?>">Заказать обратный звонок</a></li>
                                     <li><a data-toggle="modal" href="<?php echo url_for('@form_show?slug=appointment'); ?>">Запись на ремонт on-line</a></li>
                                     <li><a href="<?php echo url_for_ext('@content_page?slug=technichesky-likbez/'); ?>">Технический ликбез</a></li>
                                     <li><a href="/progress/">Поиск автозапчастей</a></li>
-                                    <li><a href="/corporate/">Корпоративным клиентам</a></li>
+                                    <li><a href="<?php echo url_for_ext('@content_page?slug=corporate/'); ?>">Корпоративным клиентам</a></li>
                                     <li><a href="<?php echo url_for_ext('@content_page?slug=auxpage_cafe/'); ?>">Кафе</a></li>
                                 </ul>
                             </div>
@@ -439,33 +439,33 @@
                                     <li class="smaller">&gt; <a href="/avtotehcenter/cadillac/">Cadillac</a></li>
                                     <li class="smaller">&gt; <a href="/avtotehcenter/hummer/">Hummer</a></li>
                                     <li>АВТОСАЛОН</li>
-                                    <li class="smaller">&gt; <a href="/progress/">Автомобили в наличии</a></li>
-                                    <li class="smaller">&gt; <a href="/progress/">Комиссионная реализация</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=avtosalon/'); ?>">Автомобили в наличии</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=realizaciya/'); ?>">Комиссионная реализация</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Кредитование</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Преоформление</a></li>
-                                    <li class="smaller">&gt; <a href="/progress/">Выкуп автомобилей</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=vykup/'); ?>">Выкуп автомобилей</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Страхование</a></li>
-                                    <li class="smaller">&gt; <a href="/progress/">Trade-in</a></li>
-                                    <li class="smaller">&gt; <a href="/podbor/">Помощь в подборе авто</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=tradein/'); ?>/">Trade-in</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=podbor/'); ?>">Помощь в подборе авто</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Авто из США и Европы</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3 col-sm-6">
                                 <ul>
                                     <li>АВТОЗАПЧАСТИ</li>
-                                    <li class="smaller">&gt; <a href="/avtozapchasti/opel/">Opel</a></li>
-                                    <li class="smaller">&gt; <a href="/avtozapchasti/chevrolet/">Chevrolet</a></li>
-                                    <li class="smaller">&gt; <a href="/avtozapchasti/cadillac/">Cadillac</a></li>
-                                    <li class="smaller">&gt; <a href="/avtozapchasti/hummer/">Hummer</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for('@zapchasti_label?car_label=opel'); ?>">Opel</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for('@zapchasti_label?car_label=chevrolet'); ?>">Chevrolet</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for('@zapchasti_label?car_label=cadillac'); ?>">Cadillac</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for('@zapchasti_label?car_label=hummer'); ?>">Hummer</a></li>
                                     <li>УСЛУГИ</li>
                                     <li class="smaller">&gt; <a href="http://gbo-ustanovka.ru">Установка ГБО</a></li>
-                                    <li class="smaller">&gt; <a href="/shinomontag/">Шиномонтаж</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=shinomontag/'); ?>">Шиномонтаж</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Кредитование</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Установка доп. оборудования</a></li>
-                                    <li class="smaller">&gt; <a href="/evakuator/">Эвакуация</a></li>
-                                    <li class="smaller">&gt; <a href="/podbor/">Помощь в подборе авто</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=evakuator/'); ?>">Эвакуация</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=podbor/'); ?>">Помощь в подборе авто</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Сигнализация и охранные системы</a></li>
-                                    <li class="smaller">&gt; <a href="/carwash/">Автомойка</a></li>
+                                    <li class="smaller">&gt; <a href="<?php echo url_for_ext('@content_page?slug=carwash/'); ?>">Автомойка</a></li>
                                     <li class="smaller">&gt; <a href="/progress/">Предпродажная подготовка</a></li>
                                 </ul>
                             </div>
