@@ -835,3 +835,15 @@ hr {
 .adv-img img {
     border: 1px solid #be1e2c;
 }
+
+.table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td {
+    border-top: 1px solid #be1e2c;
+}
+ul.pagination {
+    margin-left:0px;
+    padding-left:0px;
+}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    border-color:#be1e2c;
+    background-color:#be1e2c;
+}

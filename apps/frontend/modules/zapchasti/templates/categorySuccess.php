@@ -14,6 +14,11 @@
                         $page->getH1():
                         ( is_null($category) ? $topCategory->getName(): $category->getName()); ?></h1>
                 <?php echo is_object($page) ? $page->getBody(): ''; ?>
+                <?php include_partial('zapchasti/list_pager', array(
+                    'pager' => $pager,
+                    'carLabel' => $label,
+                    'routePrefix' => '@zapchasti_label_category_pager?car_label='.$label->getSlug().'&category='.( is_null($category) ? $topCategory->getSlug(): $category->getSlug() )
+                )); ?>
             </div>
         </div>
     </div>

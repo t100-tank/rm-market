@@ -3,7 +3,7 @@
     <ul class="top-list">
         <?php foreach ($tree as $item) { ?>
             <?php
-            $subList == '';
+            $subList = '';
             $matched = false;
             if (count($item['sub_items'])) {
                 $subList .= '<br/><ul class="sub-list">';

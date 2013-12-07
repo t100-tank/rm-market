@@ -20,12 +20,27 @@ form_chcode:
 zapchasti_label:
   url:   /avtozapchasti/:car_label/
   param: { module: zapchasti, action: label }
+zapchasti_label_pager:
+  url:   /avtozapchasti/:car_label/:page
+  param: { module: zapchasti, action: label }
+  requirements:
+    page: ^[\d]+$
 zapchasti_label_category:
   url:   /avtozapchasti/:car_label/:category/
   param: { module: zapchasti, action: category }
+zapchasti_label_category_pager:
+  url:   /avtozapchasti/:car_label/:category/:page
+  param: { module: zapchasti, action: category }
+  requirements:
+    page: ^[\d]+$
 zapchasti_label_category_product:
   url:   /avtozapchasti/:car_label/:category/:product/
   param: { module: zapchasti, action: product }
+zapchasti_label_category_product_pager:
+  url:   /avtozapchasti/:car_label/:category/:product/:page
+  param: { module: zapchasti, action: product }
+  requirements:
+    page: ^[\d]+$
 # default rules
 
 homepage:

@@ -34,6 +34,10 @@ class zapchastiActions extends sfActions {
         $this->getResponse()->addMeta('description', $this->label->getName());
         $this->getResponse()->addMeta('keywords', $this->label->getName());
 
+        $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
+        $this->pager->setCriteria( ProductPeer::getProductsByCarLabelCriteria( $this->label->getId() ) );
+        $this->pager->setPage( $request->getParameter('page', 1) );
+        $this->pager->init();
 //        check existing page
         $this->workoutPage();
     }
@@ -86,6 +90,11 @@ class zapchastiActions extends sfActions {
         $this->getResponse()->setTitle($this->label->getName());
         $this->getResponse()->addMeta('description', $this->label->getName());
         $this->getResponse()->addMeta('keywords', $this->label->getName());
+
+        $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
+        $this->pager->setCriteria( ProductPeer::getProductsByCarLabelCategoryCriteria( $this->label->getId(), $this->topCategory->getId(), ($this->category) ? $this->category->getId(): null ) );
+        $this->pager->setPage( $request->getParameter('page', 1) );
+        $this->pager->init();
 
 //        check existing page
         $this->workoutPage();

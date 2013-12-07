@@ -40,4 +40,24 @@ class ProductPeer extends BaseProductPeer {
         return $p;
     }
 
+    public static function getProductsByCarLabelCriteria($carLableId) {
+        $c = new Criteria();
+        $c->addJoin(self::ID, CarProductPeer::PRODUCT_ID, Criteria::LEFT_JOIN);
+        $c->add(CarProductPeer::CAR_ID, $carLableId);
+        return $c;
+    }
+
+    public static function getProductsByCarLabelCategoryCriteria($carLableId, $topCategoryId, $categoryId) {
+        $c = new Criteria();
+        $c->addJoin(self::ID, CarProductPeer::PRODUCT_ID, Criteria::LEFT_JOIN);
+        $c->add(CarProductPeer::CAR_ID, $carLableId);
+        if (!is_null($categoryId)) {
+            $c->add(self::CATEGORY_ID, $categoryId);
+        } else {
+            $c->addJoin(self::CATEGORY_ID, CategoryPeer::ID, Criteria::LEFT_JOIN);
+            $c->add(CategoryPeer::PARENT_ID, $topCategoryId);
+        }
+        return $c;
+    }
+
 } // ProductPeer

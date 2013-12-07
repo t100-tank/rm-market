@@ -22,6 +22,8 @@ all:
   category_cache:
     dir: tree
     ttl: 10400
+
+  products_per_page: 10
     
   .array:
     pre_fields:

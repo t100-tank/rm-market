@@ -11,6 +11,11 @@
             <div class="col-md-9 col-sm-9 col-xs-12">
                 <h1><?php echo is_object($page) ? $page->getH1(): $label->getName(); ?></h1>
                 <?php echo is_object($page) ? $page->getBody(): ''; ?>
+                <?php include_partial('zapchasti/list_pager', array(
+                    'pager' => $pager,
+                    'carLabel' => $label,
+                    'routePrefix' => '@zapchasti_label_pager?car_label='.$label->getSlug()
+                )); ?>
             </div>
         </div>
     </div>
