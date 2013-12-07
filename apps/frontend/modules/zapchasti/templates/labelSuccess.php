@@ -6,7 +6,9 @@
         <h1><?php echo is_object($page) ? $page->getH1(): $label->getName(); ?></h1>
         <?php echo is_object($page) ? $page->getBody(): ''; ?>
         <div class="row margin-bottom10">
-
+            <div class="category-tree">
+                <?php include_component('zapchasti', 'tree', array('carLabel' => $label->getSlug(), 'carLabelId' => $label->getId())); ?>
+            </div>
         </div>
     </div>
 </div>

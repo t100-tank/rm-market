@@ -267,4 +267,51 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
 //        die();
         return $report;
     }
+
+    public static function getStructuredLabelCategories($carLabelId) {
+        $con = Propel::getConnection();
+        $sql = "
+            SELECT
+              c_top.`id` AS top_id,
+              c_top.`slug` AS top_slug,
+              c_top.`name` AS top_name,
+              c_low.`id` AS bot_id,
+              c_low.`slug` AS bot_slug,
+              c_low.`name` AS bot_name
+            FROM
+              ".CarCategoryPeer::TABLE_NAME." AS cc LEFT JOIN
+              ".CategoryPeer::TABLE_NAME." AS c_low ON cc.`category_id` = c_low.`id` LEFT JOIN
+              ".CategoryPeer::TABLE_NAME." AS c_top ON c_low.`parent_id` = c_top.`id`
+            WHERE
+              cc.`car_id` = :car_label_id
+            GROUP BY
+              c_low.`id`
+            ORDER BY
+              c_top.`slug`,
+              c_low.`slug`
+        ;";
+        $stmt = $con->prepare($sql);
+        $stmt->execute(array(
+            ':car_label_id' => $carLabelId
+        ));
+        $list = array();
+        $lastTopSlug = null;
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            if ($row['top_slug'] != $lastTopSlug) {
+                $lastTopSlug = $row['top_slug'];
+                $list[$lastTopSlug] = array(
+                    'id' => $row['top_id'],
+                    'slug' => $row['top_slug'],
+                    'name' => $row['top_name'],
+                    'sub_items' => array()
+                );
+            }
+            $list[$lastTopSlug]['sub_items'][] = array(
+                'id' => $row['bot_id'],
+                'slug' => $row['bot_slug'],
+                'name' => $row['bot_name']
+            );
+        }
+        return $list;
+    }
 } // CarCategoryPeer

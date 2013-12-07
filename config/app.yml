@@ -18,6 +18,10 @@ all:
   email_from:
     admin: admin@rm-market.ru
     no_reply: no-reply@rm-market.ru
+
+  category_cache:
+    dir: tree
+    ttl: 10400
     
   .array:
     pre_fields:
