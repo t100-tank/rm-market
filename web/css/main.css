@@ -764,6 +764,10 @@ hr {
 .content-static .category-tree .top-list .top-item {
     font-size: 14px;
 }
+.content-static .category-tree .top-item,
+.content-static .category-tree .sub-item {
+    text-align:left;
+}
 .content-static .category-tree a {
     color: #666666;
 }
