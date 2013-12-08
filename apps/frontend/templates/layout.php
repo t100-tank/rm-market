@@ -252,7 +252,7 @@
                                                 </a>
                                             </div>
                                             <div class="col-md-3 col-sm-3 col-xs-6 m-hummer">
-                                                <a href="?php echo url_for('zapchasti_label', array('car_label' => 'hummer')); ?>" class="hummer">
+                                                <a href="<?php echo url_for('zapchasti_label', array('car_label' => 'hummer')); ?>" class="hummer">
                                                     <img src="/images/menu/hummer.png" title="hummer" class="img-responsive"/>
                                                 </a>
                                             </div>
