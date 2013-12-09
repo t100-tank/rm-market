@@ -22,7 +22,7 @@
                             </div>
                             <div class="col-md-8 col-sm-8 col-xs-12 header-right">
                                 <a href="#" id="favourites" rel="sidebar">Добавить в избранное</a><br/>
-                                <span class="address"><strong>107497, Москва, Амурская ул., 5, ст.1</strong></span><br/>
+                                <span class="address"><strong>107497, Москва, Амурская ул.,Дом 5, стр.1</strong></span><br/>
                                 <span class="tele"><strong>+7(495)737-89-04</strong></span><br/>
                                 <span class="schedule"><strong>c 9.00 до 21.00 без выходных</strong></span>
                             </div>
@@ -472,7 +472,7 @@
                             <div class="col-md-3 col-sm-6">
                                 <ul>
                                     <li>107497, Москва</li>
-                                    <li>Амурская ул., 5, стр.1</li>
+                                    <li>Амурская ул., Дом 5, стр.1</li>
                                     <li class="tele">+7(495)737-89-04</li>
                                     <li class="social">
                                         <a class="fb" href="http://facebook.com/"></a><a class="vk" href="http://vk.com/"></a><a class="gp" href="http://plus.google.com/"></a>
