@@ -847,3 +847,11 @@ ul.pagination {
     border-color:#be1e2c;
     background-color:#be1e2c;
 }
+
+.content-static .zapchasti .to-cart {
+    display:inline-block;
+    padding-top:20px;
+    margin-top:2px;
+    font-size:10px;
+    background: transparent url("../images/cart-small.png") center top no-repeat;
+}

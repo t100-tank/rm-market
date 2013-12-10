@@ -16,6 +16,10 @@ form_action:
 form_chcode:
   url:   /form-chcode
   param: { module: forms, action: chcode }
+
+zapchasti_add_to_cart:
+  url:   /avtozapchasti/add-to-cart/:car_label/:product/
+  param: { module: zapchasti, action: addToCart }
   
 zapchasti_label:
   url:   /avtozapchasti/:car_label/

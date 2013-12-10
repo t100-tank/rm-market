@@ -17,7 +17,7 @@ $routePrefix = $sf_data->getRaw('routePrefix');
                 <th width="11%">&nbsp;</th>
             </tr>
             <?php foreach ($pager->getResults() as $p) { ?>
-                <tr>
+                <tr class="item-holder">
                     <td><?php echo $p->getUid(); ?></td>
                     <td><a href="<?php echo url_for('zapchasti_label_category_product', array(
                             'car_label' => $carLabel->getSlug(),
@@ -26,7 +26,10 @@ $routePrefix = $sf_data->getRaw('routePrefix');
                         )); ?>"><?php echo $p->getName(); ?></a></td>
                     <td><?php echo sprintf('%.2f', $p->getDistribPrice()); ?></td>
                     <td><input type="text" name="amount" class="form-control" placeholder="1"></td>
-                    <td></td>
+                    <td><a href="<?php echo url_for('zapchasti_add_to_cart', array(
+                            'car_label' => $carLabel->getSlug(),
+                            'product' => $p->getSlug()
+                        )); ?>" class="to-cart" title="Добавить в корзину">В корзину</a></td>
                 </tr>
             <?php } ?>
         </table>

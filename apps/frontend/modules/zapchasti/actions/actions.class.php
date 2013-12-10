@@ -218,6 +218,42 @@ class zapchastiActions extends sfActions {
         $this->workoutPage();
     }
 
+    public function executeAddToCart(sfWebRequest $request) {
+        // check only ajax
+        if (!$request->isXmlHttpRequest())
+            return $this->redirect('content_page404');
+
+        $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
+        $this->product = ProductPeer::retrieveBySlug($request->getParameter('product'));
+        $this->amount = $request->getPostParameter('amount', 1);
+
+        $response = array('amount' => 0);
+        if (
+            $this->label instanceof CarLabel &&
+            $this->product instanceof Product &&
+            is_numeric($this->amount)
+        ) {
+            $stored = $this->getUser()->getAttribute('cart', array());
+            $index = 'cl'.$this->label->getId().'p'.$this->product->getId();
+            if (isset($stored[$index])) {
+                $stored[$index]['amount'] += $this->amount;
+            } else {
+                $stored[$index] = array(
+                    'label' => $this->label->toArray(BasePeer::TYPE_FIELDNAME),
+                    'product' => $this->product->toArray(BasePeer::TYPE_FIELDNAME),
+                    'amount' => $this->amount
+                );
+            }
+            $this->getUser()->setAttribute('cart', $stored);
+            $response['amount'] = count($stored);
+        } else {
+            $this->getResponse()->setStatusCode(404, 'Not found');
+            return sfView::HEADER_ONLY;
+        }
+
+        return $this->renderText(json_encode($response));
+    }
+
     /**
      * $this->breadcrumb (array) default breadcrumb
      */
