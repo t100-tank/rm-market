@@ -645,12 +645,12 @@ hr {
 .home-menu .hm-item .u-item.over .sign-ohrana .ico {background-position:-915px -61px;}
 
 .breadcrumb-placeholder {
-    height:44px;
+    min-height:44px;
     background:#e5e6e7;
     border-bottom: 1px solid #be1e2c;
 }
 .breadcrumb-placeholder .wrap1 {
-    height:44px;
+    min-height:44px;
     margin:0px auto;
     padding:0px;
     background:transparent url("../images/left-top-vert.gif") left top no-repeat;
@@ -659,22 +659,24 @@ hr {
     height:44px;
     margin:0px auto;
     background:transparent url("../images/left-bottom-vert.gif") left bottom no-repeat;
+    display:table-cell;
+    vertical-align:middle;
 }
 .breadcrumb-placeholder .breadcrumb {
-    height:44px;
+    /*min-height:44px;*/
     background: transparent;
     border:0px none transparent;
     padding:0px;
-    border-radius: 0px;
     margin:0px;
+    border-radius: 0px;
 }
 .breadcrumb-placeholder .breadcrumb > li + li:before {
     color: #404040;
     content: "» ";
 }
 .breadcrumb-placeholder .breadcrumb li {
-    height:44px;
-    font:13px/44px Tahoma;
+    /*min-height:44px;*/
+    font:13px/14px Tahoma;
     color: #be1e2c;
 }
 .breadcrumb-placeholder .breadcrumb li a {

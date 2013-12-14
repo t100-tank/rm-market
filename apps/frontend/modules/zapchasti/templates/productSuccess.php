@@ -17,6 +17,7 @@
                 <?php echo is_object($page) ? $page->getBody(): ''; ?>
                 <div class="row">
                     <div class="col-md-8 col-sm-8 col-xs-12">
+
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12 item-holder">
                         <div class="product-margin">
