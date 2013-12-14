@@ -1,3 +1,6 @@
+<div class="col-md-12 col-sm-12 col-xs-12 cart-holder"<?php if (!$sf_user->hasAttribute('cart')) { echo ' style="display: none;"'; } ?>>
+    <a href="" class="btn btn-lg btn-danger" id="cartButton" >Корзина <span>(<?php echo count($sf_user->getAttribute('cart')); ?>)</span></a>
+</div>
 <?php $tree = $sf_data->getRaw('tree'); ?>
 <?php if (count($tree)) { ?>
     <ul class="top-list">

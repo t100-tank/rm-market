@@ -755,6 +755,9 @@ hr {
 .content-static .search .form-group {
     width:100%;
 }
+.content-static .category-tree {
+    padding-top:9px;
+}
 .content-static .category-tree .toggle {
     cursor:pointer;
 }
@@ -885,4 +888,16 @@ ul.pagination {
 .content-static .zapchasti .product-attributes dd {
     margin-left:30%;
     padding-left:15px;
+}
+.btn-danger, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger {
+    background-color:#be1e2c;
+}
+
+#cartButton {
+    width:100%;
+    font-weight:bold;
+    color:#fff;
+    background-image:url('../images/cart-big.png');
+    background-position:10px center;
+    background-repeat:no-repeat;
 }

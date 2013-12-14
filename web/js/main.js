@@ -236,7 +236,13 @@ function initAddToCart() {
             type: 'POST',
             dataType: 'json',
             success: function(data){
-                console.log(data);
+                if (data.amount > 0) {
+                    $('.cart-holder').show();
+                    $('#cartButton span').html('('+data.amount+')');
+                } else {
+                    $('.cart-holder').hide();
+                    $('#cartButton span').html('');
+                }
             }
         });
 
