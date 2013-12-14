@@ -848,10 +848,31 @@ ul.pagination {
     background-color:#be1e2c;
 }
 
-.content-static .zapchasti .to-cart {
+.content-static .zapchasti .to-cart.add-from-list {
     display:inline-block;
     padding-top:20px;
     margin-top:2px;
     font-size:10px;
     background: transparent url("../images/cart-small.png") center top no-repeat;
+}
+.content-static .zapchasti .product-margin {
+    margin-bottom: 10px;
+}
+.content-static .zapchasti .to-cart.add-from-product {
+    color: #fff;
+    font-weight:bold;
+    clear:both;
+}
+.content-static .zapchasti .ask-q-btn {
+    color: #fff;
+    font-weight:bold;
+    clear:both;
+}
+.content-static .zapchasti .product-price {
+    font-weight:bold;
+    color: #be1e2c;
+}
+.content-static .zapchasti .amount-input {
+    display:inline-block;
+    width:25%;
 }

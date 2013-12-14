@@ -29,7 +29,7 @@ $routePrefix = $sf_data->getRaw('routePrefix');
                     <td><a href="<?php echo url_for('zapchasti_add_to_cart', array(
                             'car_label' => $carLabel->getSlug(),
                             'product' => $p->getSlug()
-                        )); ?>" class="to-cart" title="Добавить в корзину">В корзину</a></td>
+                        )); ?>" class="to-cart add-from-list" title="Добавить в корзину">В корзину</a></td>
                 </tr>
             <?php } ?>
         </table>

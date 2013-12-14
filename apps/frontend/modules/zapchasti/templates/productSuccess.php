@@ -15,6 +15,23 @@
                         $page->getH1():
                         $product->getName(); ?></h1>
                 <?php echo is_object($page) ? $page->getBody(): ''; ?>
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 item-holder">
+                        <div class="product-margin">
+                            Цена за единицу: <span class="product-price"><?php echo $product->getDistribPrice(); ?>р.</span>
+                        </div>
+                        <div class="product-margin">
+                            Количество: <input type="text" name="amount" class="form-control amount-input" placeholder="1">
+                        </div>
+                        <a href="<?php echo url_for('zapchasti_add_to_cart', array(
+                            'car_label' => $label->getSlug(),
+                            'product' => $product->getSlug()
+                        )); ?>" class="btn btn-danger col-md-6 col-sm-6 col-xs-6 to-cart add-from-product product-margin" title="Добавить в корзину">Купить</a>
+                        <a data-toggle="modal" href="<?php echo url_for('@form_show?slug=backCall'); ?>" class="btn btn-info col-md-6 col-sm-6 col-xs-6 ask-q-btn">Задать вопрос</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
