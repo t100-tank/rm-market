@@ -133,20 +133,22 @@ class zapchastiActions extends sfActions {
             array(
                 'link' => '@zapchasti_label?car_label='.$this->label->getSlug(),
                 'title' => $this->label->getName()
-            ),
-            array(
-                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->topCategory->getSlug(),
-                'title' => $this->topCategory->getName()
-            ),
-            array(
-                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->category->getSlug(),
-                'title' => $this->category->getName()
-            ),
-            array(
-                'link' => null,
-                'title' => $this->product->getName()
             )
         );
+        if ($this->topCategory) {
+            $this->breadcrumb[] = array(
+                    'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->topCategory->getSlug(),
+                    'title' => $this->topCategory->getName()
+                );
+        }
+        $this->breadcrumb[] = array(
+                'link' => '@zapchasti_label_category?car_label='.$this->label->getSlug().'&category='.$this->category->getSlug(),
+                'title' => $this->category->getName()
+            );
+        $this->breadcrumb[] = array(
+                'link' => null,
+                'title' => $this->product->getName()
+            );
 
         $this->getResponse()->setTitle($this->product->getName());
         $this->getResponse()->addMeta('description', $this->product->getName());

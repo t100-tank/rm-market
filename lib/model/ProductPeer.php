@@ -73,4 +73,25 @@ class ProductPeer extends BaseProductPeer {
         return $c;
     }
 
+    public static function getUsability($productId, $delimiter) {
+        $con = Propel::getConnection();
+        $stmt = $con->prepare("
+            SELECT
+                GROUP_CONCAT(DISTINCT ".CarLabelPeer::NAME." ORDER BY ".CarLabelPeer::NAME." SEPARATOR ".$con->quote($delimiter).") as list
+            FROM
+                ".CarProductPeer::TABLE_NAME." LEFT JOIN
+                ".CarLabelPeer::TABLE_NAME." ON ".CarProductPeer::CAR_ID." = ".CarLabelPeer::ID."
+            WHERE
+                ".CarProductPeer::PRODUCT_ID." = :product_id
+        ;");
+        $stmt->execute(array(
+            ':product_id' => $productId
+        ));
+        $result = false;
+        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            $result = $row[0];
+        }
+        return $result;
+    }
+
 } // ProductPeer

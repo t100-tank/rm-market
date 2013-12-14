@@ -20,4 +20,8 @@ class Product extends BaseProduct {
     public function __toString() {
         return $this->getName();
     }
+
+    public function getUsability($delimiter = ', ') {
+        return ProductPeer::getUsability($this->getId(), $delimiter);
+    }
 } // Product

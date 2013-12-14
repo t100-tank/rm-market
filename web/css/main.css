@@ -878,3 +878,11 @@ ul.pagination {
     display:inline-block;
     width:25%;
 }
+.content-static .zapchasti .product-attributes dt {
+    width:30%;
+    color: #be1e2c;
+}
+.content-static .zapchasti .product-attributes dd {
+    margin-left:30%;
+    padding-left:15px;
+}

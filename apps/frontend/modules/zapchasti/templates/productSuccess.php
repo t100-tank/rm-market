@@ -14,10 +14,19 @@
                 <h1><?php echo is_object($page) ?
                         $page->getH1():
                         $product->getName(); ?></h1>
-                <?php echo is_object($page) ? $page->getBody(): ''; ?>
+                <?php //echo is_object($page) ? $page->getBody(): ''; ?>
                 <div class="row">
                     <div class="col-md-8 col-sm-8 col-xs-12">
-
+                        <dl class="dl-horizontal product-attributes">
+                            <dt>Артикул:</dt>
+                            <dd><?php echo $product->getUid(); ?></dd>
+                            <dt>Применяемость:</dt>
+                            <dd><?php echo $product->getUsability(); ?></dd>
+                            <?php if (is_object($page)) { ?>
+                                <dt>Описание:</dt>
+                                <dd><?php echo $page->getBody(); ?></dd>
+                            <?php } ?>
+                        </dl>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12 item-holder">
                         <div class="product-margin">
