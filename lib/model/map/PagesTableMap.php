@@ -42,7 +42,7 @@ class PagesTableMap extends TableMap {
 		$this->addColumn('TYPE', 'Type', 'VARCHAR', true, 25, null);
 		$this->addColumn('SLUG', 'Slug', 'VARCHAR', true, 250, null);
 		$this->addColumn('TITLE', 'Title', 'VARCHAR', false, 250, null);
-		$this->addColumn('BREADCRUMB', 'Breadcrumb', 'VARCHAR', false, 250, null);
+		$this->addColumn('BREADCRUMB', 'Breadcrumb', 'VARCHAR', false, 4096, null);
 		$this->addColumn('H1', 'H1', 'VARCHAR', false, 250, null);
 		$this->addColumn('META_KEYWORDS', 'MetaKeywords', 'LONGVARCHAR', false, null, null);
 		$this->addColumn('META_DESCRIPTION', 'MetaDescription', 'LONGVARCHAR', false, null, null);

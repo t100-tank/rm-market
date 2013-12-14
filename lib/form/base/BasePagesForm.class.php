@@ -36,7 +36,7 @@ abstract class BasePagesForm extends BaseFormPropel
       'type'             => new sfValidatorString(array('max_length' => 25)),
       'slug'             => new sfValidatorString(array('max_length' => 250)),
       'title'            => new sfValidatorString(array('max_length' => 250, 'required' => false)),
-      'breadcrumb'       => new sfValidatorString(array('max_length' => 250, 'required' => false)),
+      'breadcrumb'       => new sfValidatorString(array('max_length' => 4096, 'required' => false)),
       'h1'               => new sfValidatorString(array('max_length' => 250, 'required' => false)),
       'meta_keywords'    => new sfValidatorString(array('required' => false)),
       'meta_description' => new sfValidatorString(array('required' => false)),
