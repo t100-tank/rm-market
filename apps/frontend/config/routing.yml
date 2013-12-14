@@ -55,6 +55,10 @@ zapchasti_label_category_product_pager:
     page: ^[\d]+$
 # default rules
 
+my_cart:
+  url:   /my/cart/
+  param: { module: my, action: cart }
+
 homepage:
   url:   /
   param: { module: home, action: index }

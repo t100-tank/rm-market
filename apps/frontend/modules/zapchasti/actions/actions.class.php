@@ -240,8 +240,10 @@ class zapchastiActions extends sfActions {
             if (isset($stored[$index])) {
                 $stored[$index]['amount'] += $this->amount;
             } else {
+                $this->category = $this->product->getCategory();
                 $stored[$index] = array(
                     'label' => $this->label->toArray(BasePeer::TYPE_FIELDNAME),
+                    'category' => $this->category->toArray(BasePeer::TYPE_FIELDNAME),
                     'product' => $this->product->toArray(BasePeer::TYPE_FIELDNAME),
                     'amount' => $this->amount
                 );
