@@ -261,7 +261,7 @@ function initCart() {
             success:function(data){
                 if (data.amount == 0) {
                     $('#cartButton span').html('');
-                    $('#cartButton').hide();
+                    $('.cart-holder').hide();
                     $('#continueShopping').trigger('click');
                 } else {
                     removing.closest('tr').remove();
