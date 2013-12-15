@@ -265,7 +265,8 @@ function initCart() {
                     $('#continueShopping').trigger('click');
                 } else {
                     removing.closest('tr').remove();
-                    $('cartSum').html(data.sum);
+                    $('#cartButton span').html('('+data.amount+')');
+                    $('#cartSum').html(data.sum);
                 }
             }
         });

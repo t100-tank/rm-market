@@ -44,7 +44,7 @@ $products = $sf_data->getRaw('products');
                                 <tr>
                                     <td colspan="2">&nbsp;</td>
                                     <td>Итого:</td>
-                                    <td colspan="2" class="text-right" id="cartSum"><?php echo $summ; ?></td>
+                                    <td colspan="2" class="text-right" id="cartSum"><?php echo $summ; ?>р.</td>
                                 </tr>
                             <?php } ?>
                         </table>

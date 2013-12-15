@@ -38,8 +38,8 @@ class myActions extends sfActions
             foreach ($products as $index => $product) {
                 $sum += $product['product']['distrib_price']*$product['amount'];
             }
-            $response['sum'] = $sum.'р.';
-            $this->getUser()->getAttribute('cart', $products);
+            $response['sum'] = sprintf('%.2f', $sum).'р.';
+            $this->getUser()->setAttribute('cart', $products);
         } else {
             $this->getUser()->getAttributeHolder()->remove('cart');
         }
