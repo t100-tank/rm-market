@@ -55,6 +55,15 @@ class myActions extends sfActions
             );
         }
 
-
+        $this->breadcrumb = array(
+            array(
+                'link' => '@homepage',
+                'title' => 'Главная'
+            ),
+            array(
+                'link' => null,
+                'title' => 'Заказ'
+            )
+        );
     }
 }

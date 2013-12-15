@@ -18,8 +18,8 @@ abstract class BaseCarLabelForm extends BaseFormPropel
       'parent_id'         => new sfWidgetFormPropelChoice(array('model' => 'CarLabel', 'add_empty' => true)),
       'slug'              => new sfWidgetFormInputText(),
       'name'              => new sfWidgetFormInputText(),
-      'car_product_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Product')),
       'car_category_list' => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Category')),
+      'car_product_list'  => new sfWidgetFormPropelChoice(array('multiple' => true, 'model' => 'Product')),
     ));
 
     $this->setValidators(array(
@@ -27,8 +27,8 @@ abstract class BaseCarLabelForm extends BaseFormPropel
       'parent_id'         => new sfValidatorPropelChoice(array('model' => 'CarLabel', 'column' => 'id', 'required' => false)),
       'slug'              => new sfValidatorString(array('max_length' => 250)),
       'name'              => new sfValidatorString(array('max_length' => 250)),
-      'car_product_list'  => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Product', 'required' => false)),
       'car_category_list' => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Category', 'required' => false)),
+      'car_product_list'  => new sfValidatorPropelChoice(array('multiple' => true, 'model' => 'Product', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -52,17 +52,6 @@ abstract class BaseCarLabelForm extends BaseFormPropel
   {
     parent::updateDefaultsFromObject();
 
-    if (isset($this->widgetSchema['car_product_list']))
-    {
-      $values = array();
-      foreach ($this->object->getCarProducts() as $obj)
-      {
-        $values[] = $obj->getProductId();
-      }
-
-      $this->setDefault('car_product_list', $values);
-    }
-
     if (isset($this->widgetSchema['car_category_list']))
     {
       $values = array();
@@ -74,49 +63,25 @@ abstract class BaseCarLabelForm extends BaseFormPropel
       $this->setDefault('car_category_list', $values);
     }
 
+    if (isset($this->widgetSchema['car_product_list']))
+    {
+      $values = array();
+      foreach ($this->object->getCarProducts() as $obj)
+      {
+        $values[] = $obj->getProductId();
+      }
+
+      $this->setDefault('car_product_list', $values);
+    }
+
   }
 
   protected function doSave($con = null)
   {
     parent::doSave($con);
 
-    $this->saveCarProductList($con);
     $this->saveCarCategoryList($con);
-  }
-
-  public function saveCarProductList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['car_product_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $c = new Criteria();
-    $c->add(CarProductPeer::CAR_ID, $this->object->getPrimaryKey());
-    CarProductPeer::doDelete($c, $con);
-
-    $values = $this->getValue('car_product_list');
-    if (is_array($values))
-    {
-      foreach ($values as $value)
-      {
-        $obj = new CarProduct();
-        $obj->setCarId($this->object->getPrimaryKey());
-        $obj->setProductId($value);
-        $obj->save();
-      }
-    }
+    $this->saveCarProductList($con);
   }
 
   public function saveCarCategoryList($con = null)
@@ -149,6 +114,41 @@ abstract class BaseCarLabelForm extends BaseFormPropel
         $obj = new CarCategory();
         $obj->setCarId($this->object->getPrimaryKey());
         $obj->setCategoryId($value);
+        $obj->save();
+      }
+    }
+  }
+
+  public function saveCarProductList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['car_product_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $c = new Criteria();
+    $c->add(CarProductPeer::CAR_ID, $this->object->getPrimaryKey());
+    CarProductPeer::doDelete($c, $con);
+
+    $values = $this->getValue('car_product_list');
+    if (is_array($values))
+    {
+      foreach ($values as $value)
+      {
+        $obj = new CarProduct();
+        $obj->setCarId($this->object->getPrimaryKey());
+        $obj->setProductId($value);
         $obj->save();
       }
     }
