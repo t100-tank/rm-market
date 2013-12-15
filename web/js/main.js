@@ -7,6 +7,7 @@ $(document).ready(function(){
     formsInit();
     zpTreeInit();
     initAddToCart();
+    initCart();
     
     $.datepicker.regional['ru'] = {
         closeText: 'Закрыть',
@@ -246,6 +247,28 @@ function initAddToCart() {
             }
         });
 
+        return false;
+    });
+}
+
+function initCart() {
+    $('body').on('click', '.do-remove', function(){
+        var url = $(this).attr('href');
+        var removing = $(this);
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            success:function(data){
+                if (data.amount == 0) {
+                    $('#cartButton span').html('');
+                    $('#cartButton').hide();
+                    $('#continueShopping').trigger('click');
+                } else {
+                    removing.closest('tr').remove();
+                    $('cartSum').html(data.sum);
+                }
+            }
+        });
         return false;
     });
 }

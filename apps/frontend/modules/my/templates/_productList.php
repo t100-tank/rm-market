@@ -24,7 +24,7 @@ $products = $sf_data->getRaw('products');
                                 <th width="7%">&nbsp;</th>
                             </tr>
                             <?php $summ = 0; ?>
-                            <?php foreach ($products as $product) { ?>
+                            <?php foreach ($products as $index => $product) { ?>
                                 <tr>
                                     <td><?php echo $product['product']['uid']; ?></td>
                                     <td><a href="<?php echo url_for('zapchasti_label_category_product', array(
@@ -34,7 +34,9 @@ $products = $sf_data->getRaw('products');
                                         )); ?>"><?php echo $product['product']['name'].' ('.$product['label']['name'].')'; ?></a></td>
                                     <td><?php echo $product['amount']; ?></td>
                                     <td><?php echo sprintf('%.2f', $product['product']['distrib_price']*$product['amount']); ?></td>
-                                    <td><a href="#remove" class="btn btn-default btn-sm do-remove">&times;</a></td>
+                                    <td><a href="<?php echo url_for('my_cart_remove', array(
+                                            'index' => $index
+                                        )); ?>" class="btn btn-default btn-sm do-remove">&times;</a></td>
                                 </tr>
                                 <?php $summ += $product['product']['distrib_price']*$product['amount']; ?>
                             <?php } ?>
@@ -42,7 +44,7 @@ $products = $sf_data->getRaw('products');
                                 <tr>
                                     <td colspan="2">&nbsp;</td>
                                     <td>Итого:</td>
-                                    <td colspan="2" class="text-right"><?php echo $summ; ?></td>
+                                    <td colspan="2" class="text-right" id="cartSum"><?php echo $summ; ?></td>
                                 </tr>
                             <?php } ?>
                         </table>
@@ -53,7 +55,7 @@ $products = $sf_data->getRaw('products');
             </div>
             <div class="modal-footer">
                 <a class="btn btn-danger">Оформить заказ</a>
-                <a class="btn btn-info" data-dismiss="modal" aria-hidden="true">Продолжить покупки</a>
+                <a class="btn btn-info" data-dismiss="modal" aria-hidden="true" id="continueShopping">Продолжить покупки</a>
             </div>
         </div>
     </div>

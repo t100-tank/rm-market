@@ -22,4 +22,27 @@ class myActions extends sfActions
             }
         }
     }
+
+    public function executeRemove(sfWebRequest $request) {
+        $index = $request->getParameter('index');
+        $products = $this->getUser()->getAttribute('cart');
+        if (isset($products[$index])) {
+            unset($products[$index]);
+        }
+        $response = array(
+            'amount' => count($products),
+            'sum' => 0
+        );
+        if ($response['amount'] != 0) {
+            $sum = 0;
+            foreach ($products as $index => $product) {
+                $sum += $product['product']['distrib_price']*$product['amount'];
+            }
+            $response['sum'] = $sum.'р.';
+            $this->getUser()->getAttribute('cart', $products);
+        } else {
+            $this->getUser()->getAttributeHolder()->remove('cart');
+        }
+        return $this->renderText(json_encode($response));
+    }
 }
