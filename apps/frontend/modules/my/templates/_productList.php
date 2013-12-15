@@ -54,7 +54,7 @@ $products = $sf_data->getRaw('products');
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-danger">Оформить заказ</a>
+                <a class="btn btn-danger" href="<?php echo url_for('my_order'); ?>">Оформить заказ</a>
                 <a class="btn btn-info" data-dismiss="modal" aria-hidden="true" id="continueShopping">Продолжить покупки</a>
             </div>
         </div>

@@ -45,4 +45,16 @@ class myActions extends sfActions
         }
         return $this->renderText(json_encode($response));
     }
+
+    public function executeOrder(sfWebRequest $request) {
+        $this->products = $this->getUser()->getAttribute('cart');
+        if (!count($this->products)) {
+            $this->redirect( $request->getReferer() ?
+                $request->getReferer():
+                'homepage'
+            );
+        }
+
+
+    }
 }

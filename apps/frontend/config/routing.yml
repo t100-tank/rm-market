@@ -58,6 +58,9 @@ zapchasti_label_category_product_pager:
 my_cart:
   url:   /my/cart/
   param: { module: my, action: cart }
+my_order:
+  url:   /my/order/
+  param: { module: my, action: order }
 my_cart_remove:
   url:   /my/cart/remove/:index
   param: { module: my, action: remove }
