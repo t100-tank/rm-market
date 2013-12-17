@@ -37,3 +37,16 @@ ServiceForm:
     operator_subject: Задан вопрос по товару
     operator_body: |
       <p>Задан вопрос по товару.</p>
+
+  Order:
+    name: order
+    title: Форма заказа
+    auto_inc: 1
+    success_message: Спасибо, с Вами свяжутся в кратчайшее время.
+    user_subject: Заказ товара
+    user_body: |
+      <p>Спасибо, мы с Вами свяжемся в кратчайшие сроки.</p>
+    operator_email: arij.true@gmail.com
+    operator_subject: Заказ товара
+    operator_body: |
+      <p>Заказ товара.</p>

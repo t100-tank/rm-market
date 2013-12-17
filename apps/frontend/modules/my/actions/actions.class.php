@@ -12,6 +12,7 @@ class myActions extends sfActions
 {
     public function executeCart(sfWebRequest $request) {
         $this->products = $this->getUser()->getAttribute('cart');
+        $this->isFromOrder = $this->getUser()->getAttribute('order', 0) == 1;
         if (empty($this->products)) {
             if ($request->isXmlHttpRequest()) {
                 $this->getResponse()->clearHeaders();
@@ -25,7 +26,7 @@ class myActions extends sfActions
 
     public function executeRemove(sfWebRequest $request) {
         $index = $request->getParameter('index');
-        $products = $this->getUser()->getAttribute('cart');
+        $products = $this->getUser()->getAttribute('cart', array());
         if (isset($products[$index])) {
             unset($products[$index]);
         }
@@ -56,7 +57,8 @@ class myActions extends sfActions
         }
 
         $this->hasProducts = $this->getUser()->hasAttribute('cart');
-        $this->products = $this->getUser()->getAttribute('cart');
+
+        $this->form = ServiceFormPeer::retrieveByName('order');
 
         $this->breadcrumb = array(
             array(
@@ -64,9 +66,18 @@ class myActions extends sfActions
                 'title' => 'Главная'
             ),
             array(
+                'link' => '@zapchasti',
+                'title' => 'Автозапчасти'
+            ),
+            array(
                 'link' => null,
                 'title' => 'Оформление заказа'
             )
         );
+    }
+
+    public function executeUpdateProducts(sfWebRequest $request) {
+        $this->products = $this->getUser()->getAttribute('cart');
+        $this->hasProducts = $this->getUser()->hasAttribute('cart');
     }
 }

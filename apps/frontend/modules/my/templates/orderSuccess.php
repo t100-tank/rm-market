@@ -7,55 +7,34 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
 <div class="content-static">
     <div class="wrap1 container">
     	<h1>Оформление заказа</h1>
-        <div class="row margin-bottom30 order">
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Для оформления заказа заполните свои контактные данные</h3>
-                    </div>
-                    <div class="panel-body order-form">
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
-                <div class="panel panel-danger">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Мой заказ</h3>
-                    </div>
-                    <div class="panel-body order-list">
-                        <div class="table-responsive">
-                            <?php if ($hasProducts) { ?>
-                                <table class="table">
-                                    <?php $summ = 0; ?>
-                                    <?php foreach ($products as $index => $product) { ?>
-                                        <tr>
-                                            <td width="60%"><a href="<?php echo url_for('zapchasti_label_category_product', array(
-                                                    'car_label' => $product['label']['slug'],
-                                                    'category' => $product['category']['slug'],
-                                                    'product' => $product['product']['slug']
-                                                )); ?>" title="<?php echo $product['product']['uid']; ?>"><?php echo $product['product']['name'].' ('.$product['label']['name'].')'; ?></a></td>
-                                            <td width="16%"><?php echo sprintf('%.2f', $product['product']['distrib_price']); ?>&nbsp;руб.</td>
-                                            <td width="8%">x<?php echo $product['amount']; ?></td>
-                                            <td width="16%"><?php echo sprintf('%.2f', $product['product']['distrib_price']*$product['amount']); ?>&nbsp;руб.</td>
-                                        </tr>
-                                        <?php $summ += $product['product']['distrib_price']*$product['amount']; ?>
-                                    <?php } ?>
-                                    <?php if ($summ > 0) { ?>
-                                        <tr>
-                                            <td>&nbsp;</td>
-                                            <td>Итого:</td>
-                                            <td colspan="2" class="text-right"><?php echo $summ; ?>р.</td>
-                                        </tr>
-                                    <?php } ?>
-                                </table>
-                            <?php } else { ?>
-                                <p>Ваша конзина пуста</p>
-                            <?php } ?>
+        <form action="<?php echo url_for('@form_action?slug='.$form->getName()); ?>" class="form-horizontal ajax-form" role="form" method="post">
+            <div class="row margin-bottom30 order">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Для оформления заказа заполните свои контактные данные</h3>
+                        </div>
+                        <div class="panel-body order-form">
+                                <?php include_partial('forms/fields', array('form' => $form)); ?>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Мой заказ</h3>
+                        </div>
+                        <div class="panel-body order-list" data-url="<?php echo url_for('my_update_products'); ?>">
+                            <?php include_partial('my/orderList', array(
+                                'hasProducts' => $hasProducts,
+                                'products' => $products
+                            )); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 col-sm-12 col-xs-12"><button type="submit" class="btn btn-danger">Оформить заказ</button></div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

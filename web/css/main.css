@@ -892,6 +892,9 @@ ul.pagination {
 .btn-danger, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open .dropdown-toggle.btn-danger {
     background-color:#be1e2c;
 }
+.btn-info, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+    background-color: #408ac9;
+}
 
 .category-tree .cart-holder {
     margin-bottom:12px;
@@ -944,4 +947,11 @@ ul.pagination {
 }
 .panel-body.order-form {
     padding:8px;
+}
+
+.panel-body.order-list .btn-info,
+.order .btn-danger {
+    text-decoration:none;
+    font-weight:bold;
+    color:#ffffff!important;
 }

@@ -7,6 +7,8 @@
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo url_for('@form_action?slug='.$form->getName()); ?>" class="form-horizontal ajax-form" role="form" method="post">
+                        <?php include_partial('forms/fields', array('form' => $form)); ?>
+                        <?php /* ?>
                         <?php foreach ($form->getOrderedFields() as $field) { ?>
                         <div class="form-group">
                             <label for="form[<?php echo $field->getFieldName(); ?>]" class="col-lg-4 control-label"><?php echo $field->getTitle(); ?></label>
@@ -60,6 +62,7 @@
                                 <input type="text" class="form-control" id="input<?php echo $form->getId(); ?>chcode" name="form[chcode]" placeholder="xxxx"/>
                             </div>
                         </div>
+                        <?php */ ?>
                         <div class="t-align-right"><button type="submit" class="btn btn-primary">Отправить</button></div>
                     </form>
                 </div>

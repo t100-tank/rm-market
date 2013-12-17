@@ -168,41 +168,58 @@ function formsInit() {
     });
     
     $('body').on('hidden.bs.modal', '.modal', function () {
+        // order page
+        if ($('#Cart').length && $('.order-list'))
+            updateProductList();
+        // common
         $('.modal[role="dialog"]').remove();
     }).on('shown.bs.modal', '.modal', function () {
-        $('.ajax-form').ajaxForm({
-            dataType:  'json',
-            success: function(data) {
-                $.each($('.modal-content:visible').find('.form-group.has-error'), function(){
-                    $(this).removeClass('has-error');
-                });
-                if (!data.success && data.error_fields.length)
-                    $.each(data.error_fields, function(index, value){
-                        $('.modal-content:visible').find('input[name$="'+value+']"]').closest('.form-group').addClass('has-error');
-                    });
-                if (data.success) {
-                    $('.modal-content:visible').find('.modal-body').html(data.message);
-                }
-            }
-        });
-        
-        if ($('.datepicker').length) {
-            $('input.datepicker').datepicker({
-                minDate: 0,
-                maxDate: '+1M',
-                showAnim: 'slideDown',
-                dateFormat: 'yy-mm-dd',
-                showOtherMonths: true,
-                selectOtherMonths: true
-            });
-        }
+        initAjaxForm();
     });
+    initAjaxForm();
     $('body').on('click', '#chcodeRefresh', function () {
         var href = $(this).attr('rel');
         var dt = new Date();
         $(this).find('img').attr('src', href+'?_='+dt.getTime());
         return false;
     });
+}
+function initAjaxForm() {
+    $('.ajax-form').ajaxForm({
+        dataType:  'json',
+        success: function(data) {
+            $.each($('.modal-content:visible,.order').find('.form-group.has-error'), function(){
+                $(this).removeClass('has-error');
+            });
+            if (!data.success && data.error_fields.length)
+                $.each(data.error_fields, function(index, value){
+                    $('.modal-content:visible,.order').find('input[name$="'+value+']"]').closest('.form-group').addClass('has-error');
+                });
+            if (data.success) {
+                if ($('.modal-content:visible').find('.modal-body').length) {
+                    $('.modal-content:visible').find('.modal-body').html(data.message);
+                } else {
+                    $(data.message).modal({
+                        keyboard:true,
+                        backdrop:true,
+                        fade:true,
+                        show:true
+                    });
+                }
+            }
+        }
+    });
+
+    if ($('.datepicker').length) {
+        $('input.datepicker').datepicker({
+            minDate: 0,
+            maxDate: '+1M',
+            showAnim: 'slideDown',
+            dateFormat: 'yy-mm-dd',
+            showOtherMonths: true,
+            selectOtherMonths: true
+        });
+    }
 }
 
 function zpTreeInit() {
@@ -272,4 +289,16 @@ function initCart() {
         });
         return false;
     });
+}
+
+function updateProductList() {
+    var url = $('.panel-body.order-list').attr('data-url');
+    if (typeof(url) != 'undefined') {
+        $.ajax({
+            url: url,
+            success:function(data){
+                $('.panel-body.order-list').html(data);
+            }
+        });
+    }
 }

@@ -61,6 +61,9 @@ my_cart:
 my_order:
   url:   /my/order/
   param: { module: my, action: order }
+my_update_products:
+  url:   /my/order/products-update/
+  param: { module: my, action: updateProducts }
 my_cart_remove:
   url:   /my/cart/remove/:index
   param: { module: my, action: remove }
