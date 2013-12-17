@@ -921,3 +921,27 @@ ul.pagination {
 #Cart .modal-footer a {
     font-weight:bold;
 }
+
+.panel-danger {
+    border-color: #be1e2c;
+}
+.panel-danger .panel-heading {
+    color: #ffffff;
+    background-color: #be1e2c;
+    border-color: #be1e2c;
+}
+
+.panel-body.order-list {
+    padding:0px;
+}
+.panel-body.order-list .table thead>tr>th,
+.panel-body.order-list .table tbody>tr>th,
+.panel-body.order-list .table tfoot>tr>th,
+.panel-body.order-list .table thead>tr>td,
+.panel-body.order-list .table tbody>tr>td,
+.panel-body.order-list .table tfoot>tr>td {
+    border-top:0px none transparent;
+}
+.panel-body.order-form {
+    padding:8px;
+}

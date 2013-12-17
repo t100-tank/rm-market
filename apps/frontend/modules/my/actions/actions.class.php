@@ -55,6 +55,9 @@ class myActions extends sfActions
             );
         }
 
+        $this->hasProducts = $this->getUser()->hasAttribute('cart');
+        $this->products = $this->getUser()->getAttribute('cart');
+
         $this->breadcrumb = array(
             array(
                 'link' => '@homepage',
@@ -62,7 +65,7 @@ class myActions extends sfActions
             ),
             array(
                 'link' => null,
-                'title' => 'Заказ'
+                'title' => 'Оформление заказа'
             )
         );
     }
