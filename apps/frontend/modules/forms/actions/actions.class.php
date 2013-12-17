@@ -99,6 +99,37 @@ class formsActions extends sfActions {
             $resp['success'] = $success;
             if ($success) {
                 $resp['message'] = '<div class="alert alert-warning">'.$this->form->getSuccessMessage().'</div>'.$text;
+
+//                Order form
+                if ($this->form->getName() == 'order') {
+                    $products = $this->getUser()->getAttribute('cart', array());
+                    if (count($products)) {
+                        $text .= '<p>Список товара:</p>';
+                        $text .= '<table>';
+                        $sum = 0;
+                        sfContext::getInstance()->getConfiguration()->loadHelpers('Url');
+                        foreach ($products as $index => $product) {
+                            $text .= '<tr>';
+                            $text .= '<td width="60%"><a href="'.url_for('zapchasti_label_category_product', array(
+                                    'car_label' => $product['label']['slug'],
+                                    'category' => $product['category']['slug'],
+                                    'product' => $product['product']['slug']
+                                )).'" title="'.$product['product']['uid'].'">'.$product['product']['name'].' ('.$product['label']['name'].')</a></td>';
+                            $text .= '<td width="16%">'.sprintf('%.2f', $product['product']['distrib_price']).'&nbsp;руб.</td>';
+                            $text .= '<td width="8%">x'.$product['amount'].'</td>';
+                            $text .= '<td width="16%">'.sprintf('%.2f', $product['product']['distrib_price']*$product['amount']).'&nbsp;руб.</td>';
+                            $text .= '</tr>';
+
+                            $sum += $product['product']['distrib_price']*$product['amount'];
+                        }
+                        $text .= '</table>';
+                        $text .= '<p>Сумма: '.sprintf('%.2f', $sum).'р.'.'</p>';
+                    } else {
+                        $text .= '<p>Список товара пуст!..</p>';
+                    }
+                    $this->getUser()->getAttributeHolder()->remove('cart');
+                }
+//                /Order form
                 
                 $text .= '<p><b>Страница:</b><br/>'.$request->getReferer().'<p>';
                 

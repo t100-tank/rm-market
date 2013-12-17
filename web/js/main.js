@@ -199,8 +199,18 @@ function initAjaxForm() {
                 if ($('.modal-content:visible').find('.modal-body').length) {
                     $('.modal-content:visible').find('.modal-body').html(data.message);
                 } else {
-                    $(data.message).modal({
-                        keyboard:true,
+                    var info =
+                        '<div class="modal fade" id="orderDone" tabindex="-1" role="dialog" aria-labelledby="modalLableOrderDone" aria-hidden="true">'+
+                            '<div class="modal-dialog">'+
+                                '<div class="modal-content">'+
+                                    '<div class="modal-body">'+
+                                        data.message+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    $(info).modal({
+                        keyboard:false,
                         backdrop:true,
                         fade:true,
                         show:true
