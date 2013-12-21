@@ -7,7 +7,7 @@
 $routePrefix = $sf_data->getRaw('routePrefix');
 ?>
 <?php if ($pager->count()) { ?>
-    <div class="table-responsive">
+    <div class="bs-example">
         <table class="table table-striped">
             <tr class="active">
                 <th width="20%">Артикул</th>
