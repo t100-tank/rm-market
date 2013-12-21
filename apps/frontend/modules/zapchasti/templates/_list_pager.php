@@ -10,16 +10,14 @@ $routePrefix = $sf_data->getRaw('routePrefix');
     <div class="bs-example">
         <table class="table table-striped">
             <tr class="active">
-                <th width="20%">Артикул</th>
-                <th width="45%">Наименование</th>
+                <th width="65%">Артикул - Наименование</th>
                 <th width="12%">Цена, руб.</th>
                 <th width="12%">Кол-во</th>
                 <th width="11%">&nbsp;</th>
             </tr>
             <?php foreach ($pager->getResults() as $p) { ?>
                 <tr class="item-holder">
-                    <td><?php echo $p->getUid(); ?></td>
-                    <td><a href="<?php echo url_for('zapchasti_label_category_product', array(
+                    <td><?php echo $p->getUid(); ?> - <a href="<?php echo url_for('zapchasti_label_category_product', array(
                             'car_label' => $carLabel->getSlug(),
                             'category' => $p->getCategory()->getSlug(),
                             'product' => $p->getSlug()
