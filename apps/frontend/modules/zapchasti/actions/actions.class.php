@@ -196,7 +196,7 @@ class zapchastiActions extends sfActions {
         $this->pager->init();
 
         if (strlen($searchUid) < 7 && strlen($searchUid) > 0) {
-            $this->getUser()->setAttibute('searchWarn', 'Пожалуйста, используйте каталожные номера запчастей (7-8 символов).');
+            $this->getUser()->setAttribute('searchWarn', 'Пожалуйста, используйте каталожные номера запчастей (7-8 символов).');
         }
 
         $this->breadcrumb = array(
