@@ -190,7 +190,7 @@ class zapchastiActions extends sfActions {
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
 
         $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
-        $this->pager->setCriteria( ProductPeer::getProductsBySearchCriteria( $this->label->getId(), $search['uid'], $search['name'] ) );
+        $this->pager->setCriteria( ProductPeer::getProductsBySearchCriteria( $this->label->getId(), str_replace(' ', '', $search['uid']), $search['name'] ) );
         $this->pager->setPage( $request->getParameter('page', 1) );
         $this->pager->init();
 
