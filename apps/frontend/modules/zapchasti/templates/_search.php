@@ -19,8 +19,9 @@
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <input type="text" name="search[name]" class="form-control" placeholder="Наименование"<?php echo isset($search['name']) ? ' value="'.$search['name'].'"': ''; ?>/>
                 </div>
-                <div class="col-md-3 col-sm-6 col-xs-12">
-                    <input type="submit" name="search[submit]" class="btn btn-default col-md-offset-6 col-sm-offset-6 col-xs-offset-6 col-md-6 col-sm-6 col-xs-6" value="Поиск"/>
+                <div class="col-md-3 col-sm-6 col-xs-12 text-right">
+                    <input type="submit" name="search[submit]" class="btn btn-default col-md-5 col-sm-5 col-xs-6" value="Поиск"/>
+                    <a data-toggle="modal" href="<?php echo url_for('@form_show?slug=productQuestion'); ?>" class="btn btn-info col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-md-6 col-sm-6 col-xs-6 ask-q-btn">Задать вопрос</a>
                 </div>
             </div>
         </form>

@@ -39,7 +39,6 @@
                             'car_label' => $label->getSlug(),
                             'product' => $product->getSlug()
                         )); ?>" class="btn btn-danger col-md-6 col-sm-6 col-xs-6 to-cart add-from-product product-margin" title="Добавить в корзину">Купить</a>
-                        <a data-toggle="modal" href="<?php echo url_for('@form_show?slug=productQuestion'); ?>" class="btn btn-info col-md-6 col-sm-6 col-xs-6 ask-q-btn">Задать вопрос</a>
                     </div>
                 </div>
             </div>

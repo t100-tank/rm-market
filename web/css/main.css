@@ -868,11 +868,6 @@ ul.pagination {
     font-weight:bold;
     clear:both;
 }
-.content-static .zapchasti .ask-q-btn {
-    color: #fff;
-    font-weight:bold;
-    clear:both;
-}
 .content-static .zapchasti .product-price {
     font-weight:bold;
     color: #be1e2c;
@@ -894,6 +889,7 @@ ul.pagination {
 }
 .btn-info, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
     background-color: #408ac9;
+    color:#ffffff!important;
 }
 
 .category-tree .cart-holder {

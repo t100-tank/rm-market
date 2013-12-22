@@ -68,7 +68,7 @@ class ProductPeer extends BaseProductPeer {
             $c->add(self::UID, $uid.'%', Criteria::LIKE);
         }
         if (!empty($name)) {
-            $c->add(self::NAME, $name.'%', Criteria::LIKE);
+            $c->add(self::NAME, '%'.$name.'%', Criteria::LIKE);
         }
         return $c;
     }
