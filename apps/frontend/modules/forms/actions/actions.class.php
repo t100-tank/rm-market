@@ -118,7 +118,7 @@ class formsActions extends sfActions {
                                     'car_label' => $product['label']['slug'],
                                     'category' => $product['category']['slug'],
                                     'product' => $product['product']['slug']
-                                )).'" title="'.$product['product']['uid'].'">'.$product['product']['name'].' ('.$product['label']['name'].')</a></td>';
+                                ), true).'" title="'.$product['product']['uid'].'">'.$product['product']['name'].' ('.$product['label']['name'].')</a></td>';
                             $text .= '<td width="16%">'.sprintf('%.2f', $product['product']['distrib_price']).'&nbsp;руб.</td>';
                             $text .= '<td width="8%">x'.$product['amount'].'</td>';
                             $text .= '<td width="16%">'.sprintf('%.2f', $product['product']['distrib_price']*$product['amount']).'&nbsp;руб.</td>';
