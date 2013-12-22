@@ -26,11 +26,12 @@
             </div>
         </form>
 
-        <?php if ($sf_user->hasFlash('search-product-notice')) { ?>
+        <?php if ($sf_user->hasAttribute('searchWarn')) { ?>
             <div class="clearfix"></div>
             <div class="alert alert-danger alert-dismissable margin-bottom10">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <?php echo $sf_user->getFlash('search-product-notice'); ?>
+                <?php echo $sf_user->getAttribute('searchWarn'); ?>
+                <?php $sf_user->getAttributeHolder()->remove('searchWarn'); ?>
             </div>
         <?php } ?>
     </div>
