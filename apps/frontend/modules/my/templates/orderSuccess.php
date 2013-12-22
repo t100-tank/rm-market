@@ -18,6 +18,9 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
                                 <?php include_partial('forms/fields', array('form' => $form)); ?>
                         </div>
                     </div>
+                    <div>
+                        <button type="submit" class="btn btn-danger">Оформить заказ</button>
+                    </div>
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="panel panel-danger">
@@ -36,7 +39,6 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="col-md-12 col-sm-12 col-xs-12"><button type="submit" class="btn btn-danger">Оформить заказ</button></div>
             </div>
         </form>
     </div>
