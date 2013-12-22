@@ -190,9 +190,14 @@ class zapchastiActions extends sfActions {
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
 
         $this->pager = new sfPropelPager('Product', sfConfig::get('app_products_per_page'));
-        $this->pager->setCriteria( ProductPeer::getProductsBySearchCriteria( $this->label->getId(), str_replace(' ', '', $search['uid']), $search['name'] ) );
+        $search = str_replace(' ', '', $search['uid']);
+        $this->pager->setCriteria( ProductPeer::getProductsBySearchCriteria( $this->label->getId(), (strlen($search) >= 7 ? $search: null), $search['name'] ) );
         $this->pager->setPage( $request->getParameter('page', 1) );
         $this->pager->init();
+
+        if (strlen($search) >= 7) {
+            $this->getUser()->setFlash('search-product-notice', 'Пожалуйста, используйте каталожные номера запчастей.');
+        }
 
         $this->breadcrumb = array(
             array(

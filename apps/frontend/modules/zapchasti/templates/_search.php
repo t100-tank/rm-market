@@ -26,4 +26,12 @@
             </div>
         </form>
     </div>
+    <?php if ($sf_user->hasFlash('search-product-notice')) { ?>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <?php echo $sf_user->getFlash('search-product-notice'); ?>
+            </div>
+        </div>
+    <?php } ?>
 </div>
