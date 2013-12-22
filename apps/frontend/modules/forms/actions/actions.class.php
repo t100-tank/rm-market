@@ -68,6 +68,10 @@ class formsActions extends sfActions {
                     $l = strlen($testPhone);
                     if ($l >= 11 && $l <= 12) {
                         $value = '+'.substr($testPhone, 0, $l-10).' ('.substr($testPhone, $l-10, 3).') '.substr($testPhone, $l-7, 3).'-'.substr($testPhone, $l-4, 2).'-'.substr($testPhone, $l-2, 2);
+                        // +8 => +7 fix
+                        if (strlen($value) == 11 && substr($value, 0, 2) == '+8') {
+                            $value = '+7'.substr($value, 2);
+                        }
                         $data['phone'] = $value;
                     } else {
                         $goodValue = false;
