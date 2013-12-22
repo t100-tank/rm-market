@@ -1,7 +1,7 @@
 <?php $search = $sf_user->getAttribute('search', array()); ?>
-<div class="row margin-bottom10 search">
+<div class="row search">
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <form action="<?php echo url_for('zapchasti_label_search', array('car_label' => $carLabelSlug)) ?>" role="form" method="post">
+        <form action="<?php echo url_for('zapchasti_label_search', array('car_label' => $carLabelSlug)) ?>" role="form" method="post" class="margin-bottom10">
             <?php $rand = rand(0,2); ?>
             <?php $sf_user->setAttribute('search_key', md5(time().rand(1000,9999))); ?>
             <input type="hidden" name="search[check]" value="<?php echo $sf_user->getAttribute('search_key'); ?>"/>
@@ -25,13 +25,13 @@
                 </div>
             </div>
         </form>
-    </div>
-    <?php if ($sf_user->hasFlash('search-product-notice')) { ?>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="alert alert-danger alert-dismissable">
+
+        <?php if ($sf_user->hasFlash('search-product-notice')) { ?>
+            <div class="clearfix"></div>
+            <div class="alert alert-danger alert-dismissable margin-bottom10">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <?php echo $sf_user->getFlash('search-product-notice'); ?>
             </div>
-        </div>
-    <?php } ?>
+        <?php } ?>
+    </div>
 </div>

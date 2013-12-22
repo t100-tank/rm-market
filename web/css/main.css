@@ -889,6 +889,7 @@ ul.pagination {
 }
 .btn-info, .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
     background-color: #408ac9;
+    border: 1px solid #408ac9;
     color:#ffffff!important;
 }
 
@@ -949,5 +950,9 @@ ul.pagination {
 .order .btn-danger {
     text-decoration:none;
     font-weight:bold;
-    color:#ffffff!important;
+}
+
+.search .alert {
+    margin:10px;
+    padding:10px 30px 10px 10px;
 }

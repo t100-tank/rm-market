@@ -12,6 +12,9 @@ class zapchastiActions extends sfActions {
 
     public function executeLabel(sfWebRequest $request) {
         $this->getUser()->setAttribute('search', array());
+        if ($this->getUser()->hasFlash('search-product-notice')) {
+            $flushIt = $this->getUser()->getFlash('search-product-notice');
+        }
 
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         if (is_null($this->label))
@@ -46,6 +49,9 @@ class zapchastiActions extends sfActions {
 
     public function executeCategory(sfWebRequest $request) {
         $this->getUser()->setAttribute('search', array());
+        if ($this->getUser()->hasFlash('search-product-notice')) {
+            $flushIt = $this->getUser()->getFlash('search-product-notice');
+        }
 
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
@@ -106,6 +112,9 @@ class zapchastiActions extends sfActions {
 
     public function executeProduct(sfWebRequest $request) {
         $this->getUser()->setAttribute('search', array());
+        if ($this->getUser()->hasFlash('search-product-notice')) {
+            $flushIt = $this->getUser()->getFlash('search-product-notice');
+        }
 
         $this->label = CarLabelPeer::retrieveBySlug($request->getParameter('car_label'));
         $this->category = CategoryPeer::retrieveBySlug($request->getParameter('category'));
@@ -195,8 +204,8 @@ class zapchastiActions extends sfActions {
         $this->pager->setPage( $request->getParameter('page', 1) );
         $this->pager->init();
 
-        if (strlen($searchUid) >= 7) {
-            $this->getUser()->setFlash('search-product-notice', 'Пожалуйста, используйте каталожные номера запчастей.');
+        if (strlen($searchUid) < 7 && strlen($searchUid) > 0) {
+            $this->getUser()->setFlash('search-product-notice', 'Пожалуйста, используйте каталожные номера запчастей (7-8 символов).');
         }
 
         $this->breadcrumb = array(
