@@ -19,7 +19,7 @@
             $matched |= $item['id'] == $categoryId;
             ?>
             <li class="top-item<?php echo $matched ? ' toggled': ''; ?>">
-                <a class="top-link<?php echo $matched ? ' pre-selected selected': ''; ?>" href="<?php echo url_for('zapchasti_label_category', array('car_label' => $carLabel, 'category' => $item['slug'])); ?>"><?php echo $item['name'] ?></a>&nbsp;<span class="toggle"><?php echo $matched ? '&raquo;': '&laquo;'; ?></span>
+                <a class="top-link<?php echo $matched ? ' pre-selected selected': ''; ?>" href="<?php echo url_for('zapchasti_label_category', array('car_label' => $carLabel, 'category' => $item['slug'])); ?>"><?php echo $item['name'] ?></a>&nbsp;<span class="toggle"><?php echo $matched ? '-': '+'; ?></span>
                 <?php echo $subList; ?>
                 <?php unset($subList); ?>
             </li>

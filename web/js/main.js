@@ -237,10 +237,10 @@ function zpTreeInit() {
         $('.content-static .category-tree .top-item .toggle').click(function(){
             $(this).closest('.top-item').toggleClass('toggled');
             if ($(this).closest('.top-item').hasClass('toggled')) {
-                $(this).html('&raquo;')
+                $(this).html('-')
                     .closest('.top-item').find('a.top-link').addClass('selected');
             } else {
-                $(this).html('&laquo;')
+                $(this).html('+')
                     .closest('.top-item').find('a.top-link').removeClass('selected');
             }
         });
@@ -308,6 +308,7 @@ function updateProductList() {
             url: url,
             success:function(data){
                 $('.panel-body.order-list').html(data);
+                $(document).trigger('ready');
             }
         });
     }
