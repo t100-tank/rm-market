@@ -31,6 +31,9 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
                             )); ?>
                         </div>
                     </div>
+                    <div>
+                        <a data-toggle="modal" href="<?php echo url_for('my_cart'); ?>" class="btn btn-info">Редактировать заказ</a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-md-12 col-sm-12 col-xs-12"><button type="submit" class="btn btn-danger">Оформить заказ</button></div>

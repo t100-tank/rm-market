@@ -17,12 +17,13 @@
             <?php } ?>
             <?php if ($summ > 0) { ?>
                 <tr>
-                    <td><a data-toggle="modal" href="<?php echo url_for('my_cart'); ?>" class="btn btn-info">Редактировать заказ</a></td>
+                    <td>&nbsp;</td>
                     <td>Итого:</td>
                     <td colspan="2" class="text-right"><?php echo $summ; ?>р.</td>
                 </tr>
             <?php } ?>
         </table>
+
     <?php } else { ?>
         <p>Ваша конзина пуста</p>
     <?php } ?>

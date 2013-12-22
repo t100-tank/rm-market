@@ -308,7 +308,6 @@ function updateProductList() {
             url: url,
             success:function(data){
                 $('.panel-body.order-list').html(data);
-                $(document).trigger('ready');
             }
         });
     }

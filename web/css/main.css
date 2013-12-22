@@ -946,7 +946,7 @@ ul.pagination {
     padding:8px;
 }
 
-.panel-body.order-list .btn-info,
+.order .btn-info,
 .order .btn-danger {
     text-decoration:none;
     font-weight:bold;
