@@ -313,7 +313,6 @@ function initCart() {
                 dataType: 'json',
                 method: 'post',
                 success:function(data){
-                    console.log(data);
                     if (data.amount != null) {
                         element.val(data.amount);
                         element.closest('tr').find('td.pricing').html(data.price);
