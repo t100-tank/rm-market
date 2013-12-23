@@ -19,7 +19,7 @@
                 <tr>
                     <td>&nbsp;</td>
                     <td>Итого:</td>
-                    <td colspan="2" class="text-right"><?php echo $summ; ?>р.</td>
+                    <td colspan="2" class="text-right"><?php echo sprintf('%.2f', $summ); ?>р.</td>
                 </tr>
             <?php } ?>
         </table>

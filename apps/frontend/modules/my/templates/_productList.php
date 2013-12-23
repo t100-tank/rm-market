@@ -32,8 +32,8 @@ $products = $sf_data->getRaw('products');
                                             'category' => $product['category']['slug'],
                                             'product' => $product['product']['slug']
                                         )); ?>"><?php echo $product['product']['name'].' ('.$product['label']['name'].')'; ?></a></td>
-                                    <td><?php echo $product['amount']; ?></td>
-                                    <td><?php echo sprintf('%.2f', $product['product']['distrib_price']*$product['amount']); ?></td>
+                                    <td><input type="text" name="amount[]" data-url="<?php echo url_for('my_cart_set', array('index' => $index)); ?>" data-index="<?php echo $index; ?>" value="<?php echo $product['amount']; ?>" class="form-control"/></td>
+                                    <td class="pricing"><?php echo sprintf('%.2f', $product['product']['distrib_price']*$product['amount']); ?></td>
                                     <td><a href="<?php echo url_for('my_cart_remove', array(
                                             'index' => $index
                                         )); ?>" class="btn btn-default btn-sm do-remove">&times;</a></td>

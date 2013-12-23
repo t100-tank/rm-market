@@ -299,6 +299,30 @@ function initCart() {
         });
         return false;
     });
+    $('body').on('blur', 'input[name="amount[]"]', function(){
+        var value = parseInt($(this).val()),
+            element = $(this);
+        if (value <= 0) {
+            $(this).closest('tr').find('a.do-remove').trigger('click');
+        } else {
+            $.ajax({
+                url: $(this).attr('data-url'),
+                data: {
+                    amount: $(this).val()
+                },
+                dataType: 'json',
+                method: 'post',
+                success:function(data){
+                    console.log(data);
+                    if (data.amount != null) {
+                        element.val(data.amount);
+                        element.closest('tr').find('td.pricing').html(data.price);
+                        $('#cartSum').html(data.total);
+                    }
+                }
+            });
+        }
+    });
 }
 
 function updateProductList() {

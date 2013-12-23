@@ -80,4 +80,30 @@ class myActions extends sfActions
         $this->products = $this->getUser()->getAttribute('cart');
         $this->hasProducts = $this->getUser()->hasAttribute('cart');
     }
+
+    public function executeSet(sfWebRequest $request) {
+        $this->products = $this->getUser()->getAttribute('cart');
+        $this->index = $request->getParameter('index');
+        $this->amount = $request->getPostParameter('amount');
+        $return = array(
+            'amount' => null,
+            'price' => null,
+            'total' => null
+        );
+        if ($this->products && isset($this->products[$this->index])) {
+            $this->products[$this->index]['amount'] = $this->amount;
+            $this->getUser()->setAttribute('cart', $this->products);
+
+            $return['amount'] = $this->products[$this->index]['amount'];
+            $return['price'] = $this->products[$this->index]['amount'] * $this->products[$this->index]['product']['distrib_price'];
+
+            $return['total'] = 0;
+            foreach ($this->products as $index => $p) {
+                $return['total'] += $p['amount'] * $p['product']['distrib_price'];
+            }
+            $return['price'] = sprintf('%.2f', $return['price']);
+            $return['total'] = sprintf('%.2f', $return['total']).'р.';
+        }
+        return $this->renderText(json_encode($return));
+    }
 }

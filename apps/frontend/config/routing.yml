@@ -67,6 +67,9 @@ my_update_products:
 my_cart_remove:
   url:   /my/cart/remove/:index
   param: { module: my, action: remove }
+my_cart_set:
+  url:   /my/cart/set/:index
+  param: { module: my, action: set }
 
 homepage:
   url:   /
