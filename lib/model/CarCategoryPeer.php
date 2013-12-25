@@ -62,23 +62,23 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         );
 //        header('content-type: text/plain;charset=utf-8');
 
-//        $createTable = "CREATE TEMPORARY TABLE i_o(
-//            `uid` varchar(100) NOT NULL,
-//            `name` varchar(250) NOT NULL,
-//            `amount` int(11) DEFAULT NULL,
-//            `distribution_price` decimal(15,2) DEFAULT NULL,
-//            `car_id` int(11) DEFAULT NULL,
-//            `cat1` varchar(250) NOT NULL,
-//            `cat2` varchar(250) NOT NULL,
-//
-//            `product_id` int(11) DEFAULT NULL,
-//            `name_slug` varchar(250) NOT NULL,
-//            `cat1_id` int(11) DEFAULT NULL,
-//            `cat1_slug` varchar(250) NOT NULL,
-//            `cat2_id` int(11) DEFAULT NULL,
-//            `cat2_slug` varchar(250) NOT NULL
-//            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
-//        $con->query($createTable);
+        $createTable = "CREATE TEMPORARY TABLE i_o(
+            `uid` varchar(100) NOT NULL,
+            `name` varchar(250) NOT NULL,
+            `amount` int(11) DEFAULT NULL,
+            `distribution_price` decimal(15,2) DEFAULT NULL,
+            `car_id` int(11) DEFAULT NULL,
+            `cat1` varchar(250) NOT NULL,
+            `cat2` varchar(250) NOT NULL,
+
+            `product_id` int(11) DEFAULT NULL,
+            `name_slug` varchar(250) NOT NULL,
+            `cat1_id` int(11) DEFAULT NULL,
+            `cat1_slug` varchar(250) NOT NULL,
+            `cat2_id` int(11) DEFAULT NULL,
+            `cat2_slug` varchar(250) NOT NULL
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+        $con->query($createTable);
 
         $insertRowSql = "INSERT INTO i_o(
             `uid`,
@@ -260,6 +260,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             ON DUPLICATE KEY UPDATE
                 ".ProductPeer::CATEGORY_ID." = i_o.`cat2_id`,
                 ".ProductPeer::AMOUNT." = i_o.`amount`,
+                ".ProductPeer::NAME." = i_o.`name`,
                 ".ProductPeer::DISTRIB_PRICE." = i_o.`distribution_price`
             ;");
         $stmt->execute();
