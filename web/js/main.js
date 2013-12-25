@@ -32,14 +32,14 @@ $(document).ready(function(){
 });
 
 function isRow2items() {
-    p1 = $(".hm-item.avtotehcentr").position();
-    p2 = $(".hm-item.avtosalon").position();
-    p3 = $(".hm-item.avtozapchasti").position();
+    var p1 = $(".hm-item.avtotehcentr").position(),
+        p2 = $(".hm-item.avtosalon").position(),
+        p3 = $(".hm-item.avtozapchasti").position();
     return (p1.top == p2.top && p2.top != p3.top);
 }
 function isRow4items() {
-    p1 = $(".hm-item.avtotehcentr").position();
-    p2 = $(".hm-item.uslugi").position();
+    var p1 = $(".hm-item.avtotehcentr").position(),
+        p2 = $(".hm-item.uslugi").position();
     return (p1.top == p2.top);
 }
 
@@ -56,8 +56,8 @@ function menuWidth() {
 
 function favInit() {
     $('#favourites').click(function(){
-        var url = window.document.location;
-        var title = window.document.title;
+        var url = window.document.location,
+            title = window.document.title;
         
         if(document.all) { // ie
             window.external.AddFavorite(url, title);

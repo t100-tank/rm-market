@@ -62,23 +62,23 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         );
 //        header('content-type: text/plain;charset=utf-8');
 
-        $createTable = "CREATE TEMPORARY TABLE i_o(
-            `uid` varchar(100) NOT NULL,
-            `name` varchar(250) NOT NULL,
-            `amount` int(11) DEFAULT NULL,
-            `distribution_price` decimal(15,2) DEFAULT NULL,
-            `car_id` int(11) DEFAULT NULL,
-            `cat1` varchar(250) NOT NULL,
-            `cat2` varchar(250) NOT NULL,
-
-            `product_id` int(11) DEFAULT NULL,
-            `name_slug` varchar(250) NOT NULL,
-            `cat1_id` int(11) DEFAULT NULL,
-            `cat1_slug` varchar(250) NOT NULL,
-            `cat2_id` int(11) DEFAULT NULL,
-            `cat2_slug` varchar(250) NOT NULL
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
-        $con->query($createTable);
+//        $createTable = "CREATE TEMPORARY TABLE i_o(
+//            `uid` varchar(100) NOT NULL,
+//            `name` varchar(250) NOT NULL,
+//            `amount` int(11) DEFAULT NULL,
+//            `distribution_price` decimal(15,2) DEFAULT NULL,
+//            `car_id` int(11) DEFAULT NULL,
+//            `cat1` varchar(250) NOT NULL,
+//            `cat2` varchar(250) NOT NULL,
+//
+//            `product_id` int(11) DEFAULT NULL,
+//            `name_slug` varchar(250) NOT NULL,
+//            `cat1_id` int(11) DEFAULT NULL,
+//            `cat1_slug` varchar(250) NOT NULL,
+//            `cat2_id` int(11) DEFAULT NULL,
+//            `cat2_slug` varchar(250) NOT NULL
+//            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;";
+//        $con->query($createTable);
 
         $insertRowSql = "INSERT INTO i_o(
             `uid`,
@@ -166,15 +166,32 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
 //        $time = time();
 
         // add all categories
-        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
+//        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
+//            SELECT
+//                `cat1`,
+//                `cat1_slug`,
+//                NULL
+//            FROM
+//                `i_o`
+//            GROUP BY
+//                `cat1`;");
+        $stmt = $con->prepare("INSERT INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
             SELECT
                 `cat1`,
                 `cat1_slug`,
-                NULL
-            FROM
-                `i_o`
-            GROUP BY
-                `cat1`;");
+                `parent_id`
+            FROM (
+                SELECT
+                    `cat1`,
+                    `cat1_slug`,
+                    NULL AS parent_id
+                FROM
+                    `i_o`
+                GROUP BY
+                    `cat1`
+            ) AS subq
+            ON DUPLICATE KEY UPDATE
+                ".CategoryPeer::NAME." = subq.`cat1`;");
         $stmt->execute();
         unset($stmt);
         // cache ids
@@ -185,15 +202,32 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         unset($stmt);
 
         // add all sub-categories
-        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
+//        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
+//            SELECT
+//                `cat2`,
+//                `cat2_slug`,
+//                `cat1_id`
+//            FROM
+//                `i_o`
+//            GROUP BY
+//                `cat2_slug`;");
+        $stmt = $con->prepare("INSERT INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
             SELECT
                 `cat2`,
                 `cat2_slug`,
-                `cat1_id`
-            FROM
-                `i_o`
-            GROUP BY
-                `cat2_slug`;");
+                `parent_id`
+            FROM (
+                SELECT
+                    `cat2`,
+                    `cat2_slug`,
+                    `cat1_id` AS parent_id
+                FROM
+                    `i_o`
+                GROUP BY
+                    `cat2_slug`
+            ) AS subq
+            ON DUPLICATE KEY UPDATE
+                ".CategoryPeer::NAME." = subq.`cat2`;");
         $stmt->execute();
         unset($stmt);
         // cache ids

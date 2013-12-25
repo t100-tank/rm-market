@@ -1,5 +1,6 @@
 <?php
 ini_set('max_execution_time', 180);
+//ini_set('memory_limit', '1024M');
 require_once dirname(__FILE__) . '/../lib/vendor/symfony/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
 
