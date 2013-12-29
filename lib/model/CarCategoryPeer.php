@@ -60,7 +60,6 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             'опель' => CarLabelPeer::retrieveIdBySlug('opel'),
             'кадиллак' => CarLabelPeer::retrieveIdBySlug('cadillac')
         );
-//        header('content-type: text/plain;charset=utf-8');
 
         $createTable = "CREATE TEMPORARY TABLE i_o(
             `uid` varchar(100) NOT NULL,
@@ -100,7 +99,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
 
         $i = 0;
         $time = time();
-        $row = fgetcsv($fh); // ommited, as headings
+        $row = fgetcsv($fh); // omitted, as headings
         while (!feof($fh) && $row = fgetcsv($fh)) {
             $i++;
             if (!$row) {
@@ -149,10 +148,6 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
                 $list = array();
             }
 
-//            if ($i%1000 == 0) {
-//                echo $i." Mem: ".memory_get_usage().', Peak:'.memory_get_peak_usage()."\r\n";
-//                ob_flush();
-//            }
         }
 
         if (count($list)) {
@@ -160,21 +155,7 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             unset($list);
         }
 
-//        echo "Mem: ".memory_get_usage().', Peak:'.memory_get_peak_usage()."\r\n";
-//        $time = time()-$time;
-//        echo "Time total: ".$time.', Avg.each:'.((float)$time/($i ? $i : 1))."\r\n";
-//        $time = time();
-
         // add all categories
-//        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
-//            SELECT
-//                `cat1`,
-//                `cat1_slug`,
-//                NULL
-//            FROM
-//                `i_o`
-//            GROUP BY
-//                `cat1`;");
         $stmt = $con->prepare("INSERT INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
             SELECT
                 `cat1`,
@@ -202,15 +183,6 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         unset($stmt);
 
         // add all sub-categories
-//        $stmt = $con->prepare("INSERT IGNORE INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
-//            SELECT
-//                `cat2`,
-//                `cat2_slug`,
-//                `cat1_id`
-//            FROM
-//                `i_o`
-//            GROUP BY
-//                `cat2_slug`;");
         $stmt = $con->prepare("INSERT INTO ".CategoryPeer::TABLE_NAME."(".CategoryPeer::NAME.", ".CategoryPeer::SLUG.", ".CategoryPeer::PARENT_ID.")
             SELECT
                 `cat2`,
@@ -296,10 +268,13 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
         $stmt->execute();
         unset($stmt);
 
-//        echo "Mem: ".memory_get_usage().', Peak:'.memory_get_peak_usage()."\r\n";
-//        $time = time()-$time;
-//        echo "Time total: ".$time.', Avg.each:'.((float)$time/($i ? $i : 1))."\r\n";
-//        die();
+        // clean-up caches
+        $cache = new sfFileCache(array('cache_dir' => sfConfig::get('sf_cache_dir').DIRECTORY_SEPARATOR.sfConfig::get('app_category_cache_dir')));
+        foreach (CarLabelPeer::doSelect(new Criteria()) as $label) {
+            $cache->removePattern($label->getSlug());
+            $cache->remove($label->getSlug());
+        }
+
         return $report;
     }
 
@@ -322,8 +297,8 @@ class CarCategoryPeer extends BaseCarCategoryPeer {
             GROUP BY
               c_low.`id`
             ORDER BY
-              c_top.`slug`,
-              c_low.`slug`
+              c_top.`name`,
+              c_low.`name`
         ;";
         $stmt = $con->prepare($sql);
         $stmt->execute(array(
