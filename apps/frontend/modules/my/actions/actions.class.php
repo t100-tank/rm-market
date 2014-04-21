@@ -56,7 +56,7 @@ class myActions extends sfActions
             );
         }
 
-        $this->page = PagesPeer::retrieveBySlug('my/order/');
+        $this->page = PagesPeer::retrieveBySlug('/my/order/');
         if ($this->page instanceof Pages) {
             $this->getResponse()->setTitle($this->page->getTitle());
             $this->getResponse()->addMeta('description', $this->page->getMetaDescription());

@@ -8,10 +8,10 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
 <div class="content-static">
     <div class="wrap1 container">
     	<h1>
-            <?php if (!is_null($page)) { ?>
-                Оформление заказа
-            <?php } else { ?>
+            <?php if ($page) { ?>
                 <?php echo $page->getH1(); ?>
+            <?php } else { ?>
+                Оформление заказа
             <?php } ?></h1>
         <form action="<?php echo url_for('@form_action?slug='.$form->getName()); ?>" class="form-horizontal ajax-form" role="form" method="post">
             <div class="row margin-bottom30 order">
@@ -47,7 +47,7 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
                 <div class="clearfix"></div>
             </div>
         </form>
-        <?php if (!is_null($page)) { ?>
+        <?php if ($page) { ?>
             <div class="margin-bottom30">
                 <?php echo $page->getBody(); ?>
             </div>
