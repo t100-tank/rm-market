@@ -1,12 +1,18 @@
 <?php
 $hasProducts = $sf_data->getRaw('hasProducts');
 $products = $sf_data->getRaw('products');
+$page = $sf_data->getRaw('page');
 
 include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
 ?>
 <div class="content-static">
     <div class="wrap1 container">
-    	<h1>Оформление заказа</h1>
+    	<h1>
+            <?php if (!is_null($page)) { ?>
+                Оформление заказа
+            <?php } else { ?>
+                <?php echo $page->getH1(); ?>
+            <?php } ?></h1>
         <form action="<?php echo url_for('@form_action?slug='.$form->getName()); ?>" class="form-horizontal ajax-form" role="form" method="post">
             <div class="row margin-bottom30 order">
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -41,5 +47,10 @@ include_component('home', 'breadcrumb', array('breadcrumb' => $breadcrumb));
                 <div class="clearfix"></div>
             </div>
         </form>
+        <?php if (!is_null($page)) { ?>
+            <div class="margin-bottom30">
+                <?php echo $page->getBody(); ?>
+            </div>
+        <?php } ?>
     </div>
 </div>
